@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Northwind Collective | Curated Goods for Everyday Living</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header class="top-bar">
+        <div class="container top-bar__inner">
+            <div class="brand">
+                <span class="brand__badge">Northwind</span>
+                <span class="brand__tagline">Collective</span>
+            </div>
+            <button class="menu-toggle" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 6h18M3 12h18M3 18h18" />
+                </svg>
+            </button>
+            <nav id="primary-navigation" class="nav" aria-label="Primary navigation">
+                <ul>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#best-sellers">Best Sellers</a></li>
+                    <li><a href="#articles">Journal</a></li>
+                    <li><a href="#newsletter">Newsletter</a></li>
+                </ul>
+            </nav>
+            <div class="actions">
+                <button class="btn btn--ghost" type="button">Sign in</button>
+                <button class="btn" type="button">View cart (0)</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero__inner">
+                <div class="hero__content">
+                    <p class="eyebrow">Spring arrivals now in stock</p>
+                    <h1>Thoughtfully sourced goods for mindful living</h1>
+                    <p class="lead">Discover artisan-made pieces, wellness essentials, and sustainable home staples selected by our team of product curators.</p>
+                    <form class="hero__search" role="search">
+                        <label for="product-search" class="sr-only">Search products</label>
+                        <input type="search" id="product-search" name="search" placeholder="Search for teas, candles, yoga mats..." />
+                        <button type="submit" class="btn">Search</button>
+                    </form>
+                    <div class="hero__meta">
+                        <div>
+                            <strong>2000+</strong>
+                            <span>Happy customers</span>
+                        </div>
+                        <div>
+                            <strong>Free shipping</strong>
+                            <span>On orders over $75</span>
+                        </div>
+                        <div>
+                            <strong>Hand picked</strong>
+                            <span>By ethical makers</span>
+                        </div>
+                    </div>
+                </div>
+                <picture class="hero__media">
+                    <source srcset="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1000&q=80" media="(min-width: 768px)" />
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80" alt="Assortment of wellness and home products" />
+                </picture>
+            </div>
+        </section>
+
+        <section class="filters" aria-label="Product filters">
+            <div class="container filters__inner">
+                <div class="filter-group">
+                    <h2>Browse by category</h2>
+                    <div class="chip-group" role="list">
+                        <button class="chip is-active" data-filter="all">All</button>
+                        <button class="chip" data-filter="wellness">Wellness</button>
+                        <button class="chip" data-filter="home">Home</button>
+                        <button class="chip" data-filter="outdoor">Outdoor</button>
+                        <button class="chip" data-filter="tech">Tech</button>
+                        <button class="chip" data-filter="beauty">Beauty</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h2>Popular tags</h2>
+                    <div class="tag-cloud" role="list">
+                        <button class="tag" data-filter="sustainable">Sustainable</button>
+                        <button class="tag" data-filter="handmade">Handmade</button>
+                        <button class="tag" data-filter="organic">Organic</button>
+                        <button class="tag" data-filter="relaxation">Relaxation</button>
+                        <button class="tag" data-filter="travel">Travel</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="collections" class="collections">
+            <div class="container section-heading">
+                <div>
+                    <p class="eyebrow">Curated for your lifestyle</p>
+                    <h2>Featured collections</h2>
+                </div>
+                <a class="link" href="#">View all collections</a>
+            </div>
+            <div class="container grid grid--collections">
+                <article class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=800&q=80" alt="Tea set and ceramic mug" />
+                    <div class="collection-card__body">
+                        <h3>Morning rituals</h3>
+                        <p>Start your day with functional teas, pour-over kits, and breakfast ceramics.</p>
+                        <a class="link" href="#best-sellers">Shop this collection</a>
+                    </div>
+                </article>
+                <article class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1518611507436-f9221403cca1?auto=format&fit=crop&w=800&q=80" alt="Yoga mat and wellness accessories" />
+                    <div class="collection-card__body">
+                        <h3>Wellness studio</h3>
+                        <p>Build your at-home sanctuary with yoga mats, diffusers, and mindful tools.</p>
+                        <a class="link" href="#best-sellers">Shop this collection</a>
+                    </div>
+                </article>
+                <article class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Outdoor backpack and picnic items" />
+                    <div class="collection-card__body">
+                        <h3>Outdoor escapes</h3>
+                        <p>Pack light with sustainably-made gear for weekend adventures and travel.</p>
+                        <a class="link" href="#best-sellers">Shop this collection</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="best-sellers" class="products" aria-labelledby="products-title">
+            <div class="container section-heading">
+                <div>
+                    <p class="eyebrow">Best sellers</p>
+                    <h2 id="products-title">Handpicked for you</h2>
+                </div>
+                <div class="sort">
+                    <label for="sort-products">Sort</label>
+                    <select id="sort-products" name="sort">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: low to high</option>
+                        <option value="price-high">Price: high to low</option>
+                        <option value="new">Newest arrivals</option>
+                    </select>
+                </div>
+            </div>
+            <div class="container grid grid--products" id="product-grid">
+                <article class="product-card" data-category="wellness" data-tags="organic relaxation" data-price="38">
+                    <img src="https://images.unsplash.com/photo-1505577058444-a3dab90d4253?auto=format&fit=crop&w=800&q=80" alt="Glass teapot and herbal tea" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Wellness</span>
+                        <h3>Botanical Wind-Down Tea</h3>
+                        <p>A calming loose-leaf blend with chamomile, valerian root, and lemon balm.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$38</span>
+                            <button class="btn btn--small" type="button">Add to cart</button>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card" data-category="home" data-tags="handmade sustainable" data-price="62">
+                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" alt="Minimalist ceramic vase" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Home</span>
+                        <h3>Stoneware Artisan Vase</h3>
+                        <p>Wheel-thrown by local potters with a satin glaze and a timeless profile.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$62</span>
+                            <button class="btn btn--small" type="button">Add to cart</button>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card" data-category="outdoor" data-tags="travel sustainable" data-price="128">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" alt="Travel backpack" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Outdoor</span>
+                        <h3>Weekender Trail Pack</h3>
+                        <p>Lightweight recycled nylon backpack with modular compartments.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$128</span>
+                            <button class="btn btn--small" type="button">Add to cart</button>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card" data-category="tech" data-tags="sustainable" data-price="89">
+                    <img src="https://images.unsplash.com/photo-1490376840453-5f616fbebe5b?auto=format&fit=crop&w=800&q=80" alt="Wood and fabric bluetooth speaker" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Tech</span>
+                        <h3>Nordic Sound Speaker</h3>
+                        <p>Bluetooth speaker with 12-hour battery life and responsibly sourced wood.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$89</span>
+                            <button class="btn btn--small" type="button">Add to cart</button>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card" data-category="beauty" data-tags="organic handmade" data-price="24">
+                    <img src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&w=800&q=80" alt="Glass bottle of face oil" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Beauty</span>
+                        <h3>Radiance Face Elixir</h3>
+                        <p>Cold-pressed botanicals formulated to hydrate, brighten, and protect skin.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$24</span>
+                            <button class="btn btn--small" type="button">Add to cart</button>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card" data-category="home" data-tags="handmade sustainable" data-price="54">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Soft linen throw blanket" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Home</span>
+                        <h3>Coastal Linen Throw</h3>
+                        <p>Breathable flax linen throw woven in small batches with natural dyes.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$54</span>
+                            <button class="btn btn--small" type="button">Add to cart</button>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card" data-category="wellness" data-tags="relaxation handmade" data-price="48">
+                    <img src="https://images.unsplash.com/photo-1526413232644-8a3f83f3d6eb?auto=format&fit=crop&w=800&q=80" alt="Aromatherapy diffuser set" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Wellness</span>
+                        <h3>Aromatherapy Ritual Set</h3>
+                        <p>Includes ceramic diffuser, essential oil trio, and mindful breathing guide.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$48</span>
+                            <button class="btn btn--small" type="button">Add to cart</button>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card" data-category="outdoor" data-tags="travel sustainable" data-price="76">
+                    <img src="https://images.unsplash.com/photo-1562376552-0d160a2f2387?auto=format&fit=crop&w=800&q=80" alt="Reusable picnic kit" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Outdoor</span>
+                        <h3>Evergreen Picnic Set</h3>
+                        <p>Reusable picnic essentials crafted from bamboo and recycled materials.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$76</span>
+                            <button class="btn btn--small" type="button">Add to cart</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="usp">
+            <div class="container usp__grid">
+                <article>
+                    <h3>Climate neutral shipping</h3>
+                    <p>We offset every shipment and partner with carriers committed to reducing emissions.</p>
+                </article>
+                <article>
+                    <h3>Flexible payment options</h3>
+                    <p>Pay over time with interest-free installments or checkout with your digital wallet.</p>
+                </article>
+                <article>
+                    <h3>Dedicated product stylists</h3>
+                    <p>Chat with our stylists for personalized recommendations tailored to your lifestyle.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="articles" class="articles" aria-labelledby="articles-title">
+            <div class="container section-heading">
+                <div>
+                    <p class="eyebrow">The Collective Journal</p>
+                    <h2 id="articles-title">Inspiration &amp; stories</h2>
+                </div>
+                <a class="link" href="#">Read all articles</a>
+            </div>
+            <div class="container grid grid--articles">
+                <article class="article-card" data-tags="wellness routines">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Person pouring tea" />
+                    <div class="article-card__body">
+                        <h3>5 grounding rituals to begin every morning</h3>
+                        <p>Start your day with mindful practices that set a calming tone for the hours ahead.</p>
+                        <a class="link" href="#">Read article</a>
+                    </div>
+                </article>
+                <article class="article-card" data-tags="home decor sustainable">
+                    <img src="https://images.unsplash.com/photo-1484100356142-db6ab6244067?auto=format&fit=crop&w=800&q=80" alt="Living room with sustainable decor" />
+                    <div class="article-card__body">
+                        <h3>Designing a conscious home you love</h3>
+                        <p>Our stylists share tips for choosing decor that feels good and does good.</p>
+                        <a class="link" href="#">Read article</a>
+                    </div>
+                </article>
+                <article class="article-card" data-tags="travel outdoor">
+                    <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=800&q=80" alt="Person holding a map outdoors" />
+                    <div class="article-card__body">
+                        <h3>Weekend getaways for the modern minimalist</h3>
+                        <p>Pack light with versatile pieces that help you disconnect and explore with ease.</p>
+                        <a class="link" href="#">Read article</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="testimonials" aria-label="Customer testimonials">
+            <div class="container">
+                <div class="testimonial">
+                    <blockquote>
+                        “Every product feels intentionally selected. The experience from browsing to delivery is effortless.”
+                    </blockquote>
+                    <cite>&mdash; Liana, community member since 2021</cite>
+                </div>
+            </div>
+        </section>
+
+        <section id="newsletter" class="newsletter">
+            <div class="container newsletter__inner">
+                <div class="newsletter__content">
+                    <p class="eyebrow">Stay in the loop</p>
+                    <h2>Join our weekly dispatch</h2>
+                    <p>Be the first to know about new arrivals, journal features, and exclusive offers curated for our community.</p>
+                </div>
+                <form class="newsletter__form">
+                    <label class="sr-only" for="newsletter-email">Email address</label>
+                    <input type="email" id="newsletter-email" name="email" placeholder="Enter your email" required />
+                    <button type="submit" class="btn">Subscribe</button>
+                    <p class="form-helper">We respect your inbox. Unsubscribe anytime.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__grid">
+            <div>
+                <div class="brand brand--footer">
+                    <span class="brand__badge">Northwind</span>
+                    <span class="brand__tagline">Collective</span>
+                </div>
+                <p>Curating goods that inspire intentional living and meaningful routines.</p>
+                <div class="social">
+                    <a href="#" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Pinterest">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 2a10 10 0 0 0-3.53 19.37c-.05-.82-.1-2.07.02-2.96.11-.82.7-5.2.7-5.2s-.18-.37-.18-.93c0-.87.51-1.52 1.14-1.52.54 0 .8.4.8.89 0 .54-.34 1.34-.52 2.08-.15.64.31 1.16.94 1.16 1.13 0 2-1.19 2-2.91 0-1.52-1.09-2.58-2.65-2.58-1.81 0-2.88 1.36-2.88 2.76 0 .55.21 1.14.48 1.46.05.06.05.11.04.17-.04.19-.13.6-.15.68-.02.09-.07.12-.17.07-.62-.29-1-1.2-1-1.93 0-1.58 1.15-3.04 3.33-3.04 1.75 0 3.11 1.25 3.11 2.92 0 1.74-1.09 3.15-2.59 3.15-.5 0-.97-.26-1.13-.57l-.31 1.17c-.11.43-.41.96-.6 1.28A10 10 0 1 0 12 2z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M21 8.5a6.5 6.5 0 0 1-3.7-1.18l.01 6.1a5.16 5.16 0 1 1-5.17-5.16c.36 0 .71.04 1.05.11V5.09a6.5 6.5 0 0 1 3.12.82 4.01 4.01 0 0 0 4.69 3.37z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#collections">New arrivals</a></li>
+                    <li><a href="#best-sellers">Bestsellers</a></li>
+                    <li><a href="#">Gift cards</a></li>
+                    <li><a href="#">Wholesale</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help center</a></li>
+                    <li><a href="#">Shipping &amp; returns</a></li>
+                    <li><a href="#">Track order</a></li>
+                    <li><a href="#">Corporate gifting</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Learn</h3>
+                <ul>
+                    <li><a href="#articles">Journal</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Our makers</a></li>
+                    <li><a href="#">Affiliates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer__legal">
+            <p>&copy; <span id="year"></span> Northwind Collective. All rights reserved.</p>
+            <a href="#">Privacy policy</a>
+            <a href="#">Terms &amp; conditions</a>
+            <a href="#">Accessibility</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
