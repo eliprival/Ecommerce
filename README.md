@@ -27,8 +27,8 @@ Personaliza la información de productos, imágenes y contenido editorial direct
 1. Crea una cuenta gratuita en [Netlify](https://www.netlify.com/) o inicia sesión si ya tienes una.
 2. Desde el panel principal, haz clic en **Add new site** y selecciona **Import an existing project**.
 3. Conecta tu repositorio de GitHub, GitLab o Bitbucket que contenga este proyecto y autoriza a Netlify a acceder.
-4. Elige la rama que quieres desplegar (por defecto `main`) y deja en blanco los campos de comando de build y directorio de publicación, ya que este sitio es estático.
+4. En el paso de configuración selecciona la rama que contiene el código del sitio (en este repositorio es `work`) y deja en blanco los campos de comando de build y directorio de publicación, ya que este sitio es estático.
 5. Haz clic en **Deploy site**. Netlify subirá los archivos `index.html`, `styles.css` y `script.js` y generará una URL pública.
 6. Personaliza la URL desde la sección **Site settings → Domain management** o conecta tu propio dominio siguiendo el asistente de Netlify.
 
-Cada vez que hagas un nuevo commit en la rama seleccionada, Netlify volverá a construir el sitio automáticamente. Si necesitas subir archivos sin usar Git, también puedes arrastrar y soltar la carpeta del proyecto en la opción **Deploy manually** del panel principal.
+Cada vez que hagas un nuevo commit en la rama seleccionada, Netlify volverá a construir el sitio automáticamente. Si necesitas subir archivos sin usar Git, también puedes arrastrar y soltar la carpeta del proyecto en la opción **Deploy manually** del panel principal. Si ves un mensaje de "Page Not Found" en tu dominio, verifica que la rama elegida en Netlify coincide con la rama `work` o la que tenga el archivo `index.html` en la raíz.
