@@ -1,19 +1,19 @@
-# Northwind Collective Ecommerce Experience
+# Experiencia de Ecommerce Northwind Colectivo
 
-A responsive ecommerce landing page that showcases curated products, helpful journal articles, and quick ways for visitors to explore collections or subscribe for updates.
+Una landing page de ecommerce responsiva que muestra productos curados, artículos útiles y caminos claros para que las personas exploren colecciones o se suscriban a las novedades.
 
-## Features
+## Características
 
-- Sticky top navigation with mobile menu toggle for easy browsing across sections.
-- Hero section with search, value propositions, and striking lifestyle imagery.
-- Interactive category chips, tag filters, and instant search to quickly surface relevant products.
-- Product grid with pricing and call-to-action buttons, plus sorting options.
-- Journal section highlighting editorial articles related to featured products.
-- Newsletter signup, testimonials, and sustainability-focused value statements.
-- Fully responsive layout designed with modern typography and soft visuals.
+- Barra de navegación fija con menú móvil para recorrer las secciones con facilidad.
+- Sección hero con buscador, propuesta de valor e imágenes inspiradoras.
+- Chips de categoría, filtros por etiquetas y búsqueda instantánea para encontrar productos relevantes.
+- Grid de productos con precios, botones de acción y opciones de ordenamiento.
+- Sección de revista que resalta artículos editoriales relacionados con los productos destacados.
+- Formulario de boletín, testimonios y mensajes enfocados en sostenibilidad.
+- Diseño totalmente responsivo con tipografía moderna y visuales suaves.
 
-## Getting Started
+## Cómo empezar
 
-Open `index.html` in your browser to explore the experience. All styling and behavior is contained in `styles.css` and `script.js` respectively.
+Abre `index.html` en tu navegador para explorar la experiencia. Todos los estilos y comportamientos se encuentran en `styles.css` y `script.js`, respectivamente.
 
-You can customize product information, imagery, and article content directly within the markup to match your catalog and brand tone.
+Puedes personalizar la información de productos, imágenes y contenido editorial directamente en el marcado para que coincida con tu catálogo y tono de marca.
