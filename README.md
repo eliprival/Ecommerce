@@ -1,6 +1,7 @@
 # Experiencia de Ecommerce Northwind Colectivo
 
-Una landing page de ecommerce responsiva que muestra productos curados, artículos útiles y caminos claros para que las personas exploren colecciones o se suscriban a las novedades.
+Una landing page de ecommerce responsiva que muestra productos curados, artículos útiles y caminos claros para que las personas
+exploren colecciones o se suscriban a las novedades.
 
 ## Características
 
@@ -14,6 +15,9 @@ Una landing page de ecommerce responsiva que muestra productos curados, artícul
 
 ## Cómo empezar
 
-Abre `index.html` en tu navegador para explorar la experiencia. Todos los estilos y comportamientos se encuentran en `styles.css` y `script.js`, respectivamente.
+1. Clona o descarga este repositorio en tu equipo.
+2. Abre una terminal dentro de la carpeta `Ecommerce` y ejecuta `python3 -m http.server 8000` para iniciar un servidor local.
+3. Ingresa a `http://localhost:8000` desde tu navegador y navega la experiencia completa.
+4. Si prefieres no usar un servidor, también puedes abrir el archivo `index.html` directamente en el navegador.
 
-Puedes personalizar la información de productos, imágenes y contenido editorial directamente en el marcado para que coincida con tu catálogo y tono de marca.
+Personaliza la información de productos, imágenes y contenido editorial directamente en el marcado para que coincida con tu catálogo y tono de marca.
