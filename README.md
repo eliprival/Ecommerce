@@ -11,6 +11,7 @@ exploren colecciones o se suscriban a las novedades.
 - Grid de productos con precios, botones de acción y opciones de ordenamiento.
 - Sección de revista que resalta artículos editoriales relacionados con los productos destacados.
 - Formulario de boletín, testimonios y mensajes enfocados en sostenibilidad.
+- Navegación a páginas dedicadas (colecciones, artículos, soporte, políticas y más) para ofrecer contexto ampliado sin alterar la landing principal.
 - Diseño totalmente responsivo con tipografía moderna y visuales suaves.
 
 ## Cómo empezar
@@ -21,6 +22,17 @@ exploren colecciones o se suscriban a las novedades.
 4. Si prefieres no usar un servidor, también puedes abrir el archivo `index.html` directamente en el navegador.
 
 Personaliza la información de productos, imágenes y contenido editorial directamente en el marcado para que coincida con tu catálogo y tono de marca.
+
+## Páginas adicionales disponibles
+
+Todos los enlaces de la barra de navegación y del pie de página dirigen a páginas individuales dentro de la carpeta `pages/`. Algunas de las más consultadas son:
+
+- `pages/colecciones.html`, `pages/mas-vendidos.html`, `pages/revista.html` y `pages/boletin.html` para las secciones editoriales y comerciales principales.
+- `pages/coleccion-rituales.html`, `pages/coleccion-bienestar.html` y `pages/coleccion-aventura.html` con detalle de cada colección destacada.
+- `pages/centro-de-ayuda.html`, `pages/envios-y-devoluciones.html` y `pages/rastrea-tu-pedido.html` con información de soporte.
+- `pages/politica-privacidad.html`, `pages/terminos-condiciones.html` y `pages/accesibilidad.html` para las políticas legales y de accesibilidad.
+
+Puedes modificar o ampliar cualquier página adicional manteniendo la misma estructura de estilos para garantizar una experiencia consistente.
 
 ## Despliegue en Netlify
 
