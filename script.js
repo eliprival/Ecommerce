@@ -5,10 +5,13 @@ const tags = document.querySelectorAll('.tag');
 const productCards = Array.from(document.querySelectorAll('.product-card'));
 const productSearch = document.querySelector('#product-search');
 const sortSelect = document.querySelector('#sort-products');
-const yearEl = document.querySelector('#year');
+const yearEls = document.querySelectorAll('[data-year]');
 
-if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
+if (yearEls.length > 0) {
+    const currentYear = new Date().getFullYear();
+    yearEls.forEach((element) => {
+        element.textContent = currentYear;
+    });
 }
 
 if (navToggle && nav) {
