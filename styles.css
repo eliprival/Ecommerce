@@ -368,6 +368,15 @@ select {
     flex-direction: column;
 }
 
+.product-card--interactive {
+    cursor: pointer;
+}
+
+.product-card--interactive:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+}
+
 .collection-card img {
     height: 220px;
 }

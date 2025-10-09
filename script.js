@@ -103,6 +103,62 @@ if (sortSelect) {
 filterProducts({ category: 'all' });
 sortProducts(sortSelect?.value || 'featured');
 
+productCards.forEach((card) => {
+    const cardLink = card.querySelector('.product-card__link');
+    const destination = cardLink?.getAttribute('href') || card.dataset.productUrl;
+
+    if (!destination) {
+        return;
+    }
+
+    card.classList.add('product-card--interactive');
+
+    if (!card.hasAttribute('tabindex')) {
+        card.setAttribute('tabindex', '0');
+    }
+
+    if (!card.hasAttribute('role')) {
+        card.setAttribute('role', 'link');
+    }
+
+    if (!card.hasAttribute('aria-label')) {
+        const label = card.dataset.productName || card.querySelector('h3')?.textContent?.trim();
+        if (label) {
+            card.setAttribute('aria-label', label);
+        }
+    }
+
+    card.addEventListener('click', (event) => {
+        const interactiveTarget = event.target.closest('a, button, input, select, textarea');
+
+        if (interactiveTarget) {
+            if (interactiveTarget === cardLink) {
+                return;
+            }
+
+            // Allow buttons (como "Agregar al carrito") a manejar su propio flujo
+            return;
+        }
+
+        window.location.href = safePath(destination);
+    });
+
+    card.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') {
+            return;
+        }
+
+        const interactiveTarget = event.target.closest('button, a, input, select, textarea');
+
+        if (interactiveTarget) {
+            return;
+        }
+
+        event.preventDefault();
+        window.location.href = safePath(destination);
+    });
+});
+
 const galleries = document.querySelectorAll('[data-gallery]');
 
 galleries.forEach((gallery) => {
