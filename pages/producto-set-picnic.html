@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set de Picnic Evergreen | Northwind Colectivo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div class="announcement-bar" role="status">
+        <div class="container announcement-bar__inner">
+            <span>Free shipping</span>
+            <span>Envíos a toda Colombia</span>
+            <span>Emprende</span>
+        </div>
+    </div>
+    <header class="top-bar">
+        <div class="container top-bar__inner">
+            <div class="brand">
+                <span class="brand__badge">Northwind</span>
+                <span class="brand__tagline">Colectivo</span>
+            </div>
+            <button class="menu-toggle" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="sr-only">Alternar navegación</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 6h18M3 12h18M3 18h18" />
+                </svg>
+            </button>
+            <nav id="primary-navigation" class="nav" aria-label="Navegación principal">
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="colecciones.html">Colecciones</a></li>
+                    <li><a href="mas-vendidos.html" aria-current="page">Más vendidos</a></li>
+                    <li><a href="revista.html">Revista</a></li>
+                    <li><a href="boletin.html">Boletín</a></li>
+                </ul>
+            </nav>
+            <div class="actions">
+                <button class="btn btn--ghost" type="button">
+                    <span class="btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="7" r="4" />
+                            <path d="M5 21v-1a6 6 0 0 1 6-6h2" />
+                            <path d="M19 15v6" />
+                            <path d="M22 18h-6" />
+                        </svg>
+                    </span>
+                    <span>Regístrate</span>
+                </button>
+                <button class="btn btn--ghost" type="button">
+                    <span class="btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                            <polyline points="10 17 15 12 10 7" />
+                            <line x1="15" y1="12" x2="3" y2="12" />
+                        </svg>
+                    </span>
+                    <span>Iniciar sesión</span>
+                </button>
+                <button class="btn" type="button">
+                    <span class="btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1" />
+                            <circle cx="19" cy="21" r="1" />
+                            <path d="M2 3h3l2.4 12.34A2 2 0 0 0 9.36 17h9.28a2 2 0 0 0 1.96-1.66L22 7H6" />
+                        </svg>
+                    </span>
+                    <span>Carrito (0)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="product-page">
+            <div class="container product-page__inner">
+                <div class="product-gallery" data-gallery>
+                    <div class="product-gallery__preview">
+                        <img src="https://images.unsplash.com/photo-1562376552-0d160a2f2387?auto=format&fit=crop&w=1200&q=80" alt="Set de picnic reutilizable con platos y cubiertos" data-gallery-current />
+                        <button class="product-gallery__control product-gallery__control--prev" type="button" aria-label="Ver imagen anterior" data-gallery-prev>
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <polyline points="15 6 9 12 15 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <button class="product-gallery__control product-gallery__control--next" type="button" aria-label="Ver imagen siguiente" data-gallery-next>
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <polyline points="9 6 15 12 9 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <div class="product-gallery__indicator" data-gallery-indicator aria-live="polite">1 / 4</div>
+                    </div>
+                    <div class="product-gallery__thumbnails" role="list">
+                        <button class="product-gallery__thumb is-active" type="button" data-gallery-thumb data-image="https://images.unsplash.com/photo-1562376552-0d160a2f2387?auto=format&fit=crop&w=1200&q=80" data-alt="Set de picnic reutilizable con platos y cubiertos" aria-label="Ver set completo">
+                            <img src="https://images.unsplash.com/photo-1562376552-0d160a2f2387?auto=format&fit=crop&w=320&q=80" alt="" />
+                        </button>
+                        <button class="product-gallery__thumb" type="button" data-gallery-thumb data-image="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=1200&q=80" data-alt="Picnic en pradera con mantel y frutas" aria-label="Ver picnic en pradera">
+                            <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=320&q=80" alt="" />
+                        </button>
+                        <button class="product-gallery__thumb" type="button" data-gallery-thumb data-image="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" data-alt="Mesa con snacks y termos reutilizables" aria-label="Ver accesorios del set">
+                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=320&q=80" alt="" />
+                        </button>
+                        <button class="product-gallery__thumb" type="button" data-gallery-thumb data-image="https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1200&q=80" data-alt="Cesta de picnic con botellas y flores" aria-label="Ver cesta con botellas">
+                            <img src="https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=320&q=80" alt="" />
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <a class="back-link" href="../index.html#best-sellers">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <polyline points="15 6 9 12 15 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Volver a los productos
+                    </a>
+                    <h1>Set de Picnic Evergreen</h1>
+                    <div class="product-rating">
+                        <span class="product-rating__stars" aria-hidden="true">★★★★☆</span>
+                        <span class="product-rating__score">4,8</span>
+                        <a class="product-rating__count" href="#reseñas">245 reseñas</a>
+                    </div>
+                    <p class="product-info__sku">SKU: NW-OUT-034</p>
+                    <div class="product-info__price">
+                        <span class="product-info__amount">$296.000</span>
+                        <span class="product-info__note">Incluye IVA</span>
+                    </div>
+                    <p class="product-info__availability">Disponible. Stock limitado por temporada.</p>
+                    <div class="product-info__shipping">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 7h13v10H3z" />
+                            <path d="M16 11h5l-2-4h-3" />
+                            <circle cx="7.5" cy="17" r="1.5" />
+                            <circle cx="16.5" cy="17" r="1.5" />
+                        </svg>
+                        <div>
+                            <p>Entrega en Bucaramanga el <strong>viernes 17 de mayo</strong>.</p>
+                            <p class="product-info__small">Incluye seguimiento en ruta y servicio de mensajería responsable.</p>
+                        </div>
+                    </div>
+                    <ul class="product-info__bullets">
+                        <li>Utensilios en bambú certificado, platos de fibras vegetales y vasos inoxidables.</li>
+                        <li>Mantel impermeable doble faz y bolsillos térmicos para conservar temperatura.</li>
+                        <li>Compartimento para botellas con correa ajustable y cinta aislante de impactos.</li>
+                        <li>Incluye guía de recetas rápidas plant based y mapa de parques recomendados.</li>
+                    </ul>
+                    <div class="product-info__actions">
+                        <button class="btn" type="button">Comprar ahora</button>
+                        <button class="btn btn--ghost" type="button">Agregar al carrito</button>
+                    </div>
+                    <div class="product-info__meta">
+                        <p>Cesta fabricada con plástico reciclado posconsumo, 100% reciclable al final de su vida útil.</p>
+                        <p class="product-info__small">Capacidad para cuatro personas. Peso total: 2,6 kg.</p>
+                        <p class="product-info__small">Garantía de 12 meses en herrajes y cierres.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container product-detail" id="reseñas">
+                <div class="product-detail__content">
+                    <h2>Picnics sostenibles en cualquier lugar</h2>
+                    <p>El Set de Picnic Evergreen reúne todo lo necesario para disfrutar al aire libre sin generar residuos. Diseñado para parques urbanos, playas y viajes por carretera.</p>
+                    <h3>Contenido del set</h3>
+                    <ul class="product-detail__list">
+                        <li>Cuatro platos, vasos y cubiertos reutilizables con bolsa de malla lavable.</li>
+                        <li>Tabla de bambú para quesos y frutas con cuchillo plegable.</li>
+                        <li>Contenedor hermético para snacks y servilletas de lino lavable.</li>
+                        <li>Gel antibacterial en formato recargable y bolsillos para basura separada.</li>
+                    </ul>
+                    <h3>Consejos para cuidarlo</h3>
+                    <p>Lava los utensilios con agua tibia y jabón neutro después de cada salida. Deja secar al aire antes de guardar. Para el mantel, limpia con paño húmedo o lava en ciclo suave.</p>
+                    <div class="product-detail__meta">
+                        <p><strong>Materiales:</strong> bambú, acero inoxidable, PET reciclado.</p>
+                        <p><strong>Dimensiones:</strong> 48 x 30 x 26 cm.</p>
+                        <p><strong>Garantía:</strong> 1 año por defectos de fabricación.</p>
+                    </div>
+                </div>
+                <aside class="product-detail__grid">
+                    <div class="product-detail__card">
+                        <span class="product-detail__badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 2l3 7h7l-5.5 4.5L18 22l-6-4-6 4 1.5-8.5L2 9h7z" />
+                            </svg>
+                            Hecho para aventuras
+                        </span>
+                        <p>Probado por nuestro equipo en recorridos por la sabana de Bogotá y playas del Caribe.</p>
+                    </div>
+                    <div class="product-detail__card">
+                        <h3>Experiencias reales</h3>
+                        <p>“Perfecto para compartir con amigos en el Jardín Botánico. Los compartimentos mantienen todo ordenado.” — Mauricio, Bogotá.</p>
+                        <p>“Lo llevé a una caminata en Barichara y resistió sin rayones ni golpes.” — Andrea, Bucaramanga.</p>
+                    </div>
+                    <div class="product-detail__card">
+                        <h3>Complementos sugeridos</h3>
+                        <p>Añade nuestra botella térmica Selva y las mantas de lino para un kit completo.</p>
+                        <a class="link" href="coleccion-aventura.html">Explorar accesorios</a>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer__top">
+            <div>
+                <div class="brand">
+                    <span class="brand__badge">Northwind</span>
+                    <span class="brand__tagline">Colectivo</span>
+                </div>
+                <p>Curamos objetos cotidianos, bienestar y experiencias que cuentan historias colombianas.</p>
+            </div>
+            <div>
+                <h3>Comprar</h3>
+                <ul>
+                    <li><a href="nuevas-llegadas.html">Nuevas llegadas</a></li>
+                    <li><a href="mas-vendidos.html">Más vendidos</a></li>
+                    <li><a href="tarjetas-de-regalo.html">Tarjetas de regalo</a></li>
+                    <li><a href="ventas-por-mayor.html">Ventas al por mayor</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="centro-de-ayuda.html">Centro de ayuda</a></li>
+                    <li><a href="envios-y-devoluciones.html">Envíos y devoluciones</a></li>
+                    <li><a href="rastrea-tu-pedido.html">Rastrea tu pedido</a></li>
+                    <li><a href="regalos-corporativos.html">Regalos corporativos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Comunidad</h3>
+                <ul>
+                    <li><a href="revista.html">Revista</a></li>
+                    <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+                    <li><a href="nuestros-creadores.html">Nuestros creadores</a></li>
+                    <li><a href="afiliados.html">Afiliados</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer__bottom">
+            <p>© <span id="year">2023</span> Northwind Colectivo. Todos los derechos reservados.</p>
+            <div class="footer__meta">
+                <a href="politica-privacidad.html">Política de privacidad</a>
+                <a href="terminos-condiciones.html">Términos y condiciones</a>
+                <a href="accesibilidad.html">Accesibilidad</a>
+            </div>
+        </div>
+    </footer>
+    <script src="../script.js" defer></script>
+</body>
+</html>

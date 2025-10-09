@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Más vendidos | Northwind Colectivo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div class="announcement-bar" role="status">
+        <div class="container announcement-bar__inner">
+            <span>Free shipping</span>
+            <span>Envíos a toda Colombia</span>
+            <span>Emprende</span>
+        </div>
+    </div>
+    <header class="top-bar">
+        <div class="container top-bar__inner">
+            <div class="brand">
+                <span class="brand__badge">Northwind</span>
+                <span class="brand__tagline">Colectivo</span>
+            </div>
+            <button class="menu-toggle" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="sr-only">Alternar navegación</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 6h18M3 12h18M3 18h18" />
+                </svg>
+            </button>
+            <nav id="primary-navigation" class="nav" aria-label="Navegación principal">
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="colecciones.html">Colecciones</a></li>
+                    <li><a href="mas-vendidos.html" aria-current="page">Más vendidos</a></li>
+                    <li><a href="revista.html">Revista</a></li>
+                    <li><a href="boletin.html">Boletín</a></li>
+                </ul>
+            </nav>
+            <div class="actions">
+                <button class="btn btn--ghost" type="button">
+                    <span class="btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="7" r="4" />
+                            <path d="M5 21v-1a6 6 0 0 1 6-6h2" />
+                            <path d="M19 15v6" />
+                            <path d="M22 18h-6" />
+                        </svg>
+                    </span>
+                    <span>Regístrate</span>
+                </button>
+                <button class="btn btn--ghost" type="button">
+                    <span class="btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                            <polyline points="10 17 15 12 10 7" />
+                            <line x1="15" y1="12" x2="3" y2="12" />
+                        </svg>
+                    </span>
+                    <span>Iniciar sesión</span>
+                </button>
+                <button class="btn" type="button">
+                    <span class="btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1" />
+                            <circle cx="19" cy="21" r="1" />
+                            <path d="M2 3h3l2.4 12.34A2 2 0 0 0 9.36 17h9.28a2 2 0 0 0 1.96-1.66L22 7H6" />
+                        </svg>
+                    </span>
+                    <span>Carrito (0)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="simple-page">
+            <div class="container simple-page__header">
+                <a class="back-link" href="../index.html">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <polyline points="15 6 9 12 15 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <line x1="9" y1="12" x2="21" y2="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Volver al inicio
+                </a>
+                <p class="eyebrow">Favoritos de la comunidad</p>
+                <h1>Los esenciales más amados por la comunidad</h1>
+                <p class="lead">Estos productos se agotan rápido por su calidad, impacto positivo y la historia de sus creadores colombianos.</p>
+                <div class="simple-page__actions">
+                    <a class="btn" href="../index.html#best-sellers">Ver cuadrícula completa</a>
+                    <a class="btn btn--ghost" href="colecciones.html">Explorar colecciones</a>
+                </div>
+            </div>
+            <div class="container simple-page__content">
+                <article class="simple-card highlight-card">
+                    <span class="simple-card__eyebrow">Top 1</span>
+                    <h2>Set de té artesanal "Amanecer"</h2>
+                    <p>Ensamblado por ceramistas de Ráquira con esmaltes libres de plomo y acompañado de una mezcla de té negro con flor de Jamaica.</p>
+                    <ul class="simple-card__list">
+                        <li>Incluye tetera, filtro y dos tazas</li>
+                        <li>Acabado mate resistente al calor</li>
+                        <li>Parte de nuestras colecciones de rituales</li>
+                    </ul>
+                    <div class="simple-card__meta">Disponible desde $185.000 COP</div>
+                    <div class="simple-card__actions">
+                        <a class="btn" href="coleccion-rituales.html">Ver detalles</a>
+                        <a class="btn btn--ghost" href="../index.html#newsletter">Recordarme reposición</a>
+                    </div>
+                </article>
+                <article class="simple-card">
+                    <span class="simple-card__eyebrow">Top 2</span>
+                    <h2>Kit de aromaterapia Selva Viva</h2>
+                    <p>Incluye difusor ultrasónico compacto y tres aceites esenciales destilados en el Eje Cafetero con notas frescas y herbales.</p>
+                    <ul class="simple-card__list">
+                        <li>Modo noche silencioso</li>
+                        <li>Aceites certificados orgánicos</li>
+                        <li>Recetario digital descargable</li>
+                    </ul>
+                    <div class="simple-card__meta">Bundle exclusivo $259.000 COP</div>
+                    <div class="simple-card__actions">
+                        <a class="btn" href="coleccion-bienestar.html">Comprar ahora</a>
+                        <a class="btn btn--ghost" href="revista.html">Aprender rituales</a>
+                    </div>
+                </article>
+                <article class="simple-card">
+                    <span class="simple-card__eyebrow">Top 3</span>
+                    <h2>Mochila Andina impermeable</h2>
+                    <p>Diseño liviano con telas recuperadas y acabados en cuero vegano, ideal para trayectos en bicicleta o viajes de 48 horas.</p>
+                    <ul class="simple-card__list">
+                        <li>Bolsillo acolchado para portátil 15"</li>
+                        <li>Garantía de 2 años por confección</li>
+                        <li>Envío gratuito a principales ciudades</li>
+                    </ul>
+                    <div class="simple-card__meta">Precio regular $329.000 COP</div>
+                    <div class="simple-card__actions">
+                        <a class="btn" href="coleccion-aventura.html">Añadir al carrito</a>
+                        <a class="btn btn--ghost" href="../index.html#newsletter">Notificar disponibilidad</a>
+                    </div>
+                </article>
+            </div>
+            <div class="container simple-page__cta">
+                <h2>¿Quieres recibir alertas cuando se repongan los best sellers?</h2>
+                <p>Sé parte de nuestra lista VIP y obtén recordatorios automáticos, cupones exclusivos y acceso a preventas.</p>
+                <a class="btn" href="boletin.html">Unirme a la lista VIP</a>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer__top">
+            <div>
+                <div class="brand">
+                    <span class="brand__badge">Northwind</span>
+                    <span class="brand__tagline">Colectivo</span>
+                </div>
+                <p>Curamos objetos cotidianos, bienestar y experiencias que cuentan historias colombianas.</p>
+            </div>
+            <div>
+                <h3>Comprar</h3>
+                <ul>
+                    <li><a href="nuevas-llegadas.html">Nuevas llegadas</a></li>
+                    <li><a href="mas-vendidos.html">Más vendidos</a></li>
+                    <li><a href="tarjetas-de-regalo.html">Tarjetas de regalo</a></li>
+                    <li><a href="ventas-por-mayor.html">Ventas al por mayor</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="centro-de-ayuda.html">Centro de ayuda</a></li>
+                    <li><a href="envios-y-devoluciones.html">Envíos y devoluciones</a></li>
+                    <li><a href="rastrea-tu-pedido.html">Rastrea tu pedido</a></li>
+                    <li><a href="regalos-corporativos.html">Regalos corporativos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Comunidad</h3>
+                <ul>
+                    <li><a href="revista.html">Revista</a></li>
+                    <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+                    <li><a href="nuestros-creadores.html">Nuestros creadores</a></li>
+                    <li><a href="afiliados.html">Afiliados</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer__bottom">
+            <p>© <span id="year">2023</span> Northwind Colectivo. Todos los derechos reservados.</p>
+            <div class="footer__meta">
+                <a href="politica-privacidad.html">Política de privacidad</a>
+                <a href="terminos-condiciones.html">Términos y condiciones</a>
+                <a href="accesibilidad.html">Accesibilidad</a>
+            </div>
+        </div>
+    </footer>
+    <script src="../script.js" defer></script>
+</body>
+</html>
