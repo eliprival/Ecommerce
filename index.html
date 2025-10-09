@@ -60,7 +60,7 @@
                     </span>
                     <span>Iniciar sesión</span>
                 </button>
-                <button class="btn" type="button">
+                <a class="btn" href="pages/carrito.html">
                     <span class="btn__icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="9" cy="21" r="1" />
@@ -68,8 +68,8 @@
                             <path d="M2 3h3l2.4 12.34A2 2 0 0 0 9.36 17h9.28a2 2 0 0 0 1.96-1.66L22 7H6" />
                         </svg>
                     </span>
-                    <span>Carrito (0)</span>
-                </button>
+                    <span>Carrito (<span data-cart-count>0</span>)</span>
+                </a>
             </div>
         </div>
     </header>
@@ -187,7 +187,7 @@
                 </div>
             </div>
             <div class="container grid grid--products" id="product-grid">
-                <article class="product-card" data-category="wellness" data-tags="organic relaxation" data-price="38">
+                <article class="product-card" data-category="wellness" data-tags="organic relaxation" data-price="38" data-product-id="te-botanico" data-product-name="Té Botánico Nocturno" data-product-price="148000" data-product-url="pages/producto-te-botanico.html" data-product-image="https://images.unsplash.com/photo-1505577058444-a3dab90d4253?auto=format&fit=crop&w=800&q=80">
                     <img src="https://images.unsplash.com/photo-1505577058444-a3dab90d4253?auto=format&fit=crop&w=800&q=80" alt="Tetera de vidrio y té herbal" />
                     <div class="product-card__body">
                         <span class="product-card__category">Bienestar</span>
@@ -195,12 +195,12 @@
                         <p>Mezcla relajante de hojas sueltas con manzanilla, valeriana y toronjil.</p>
                         <div class="product-card__footer">
                             <span class="price">$148.000</span>
-                            <button class="btn btn--small" type="button">Agregar al carrito</button>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
                         </div>
                         <a class="product-card__link" href="pages/producto-te-botanico.html">Ver detalles del producto</a>
                     </div>
                 </article>
-                <article class="product-card" data-category="home" data-tags="handmade sustainable" data-price="62">
+                <article class="product-card" data-category="home" data-tags="handmade sustainable" data-price="62" data-product-id="jarron-gres" data-product-name="Jarrón Artesanal en Gres" data-product-price="241000" data-product-url="pages/producto-jarron-gres.html" data-product-image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80">
                     <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" alt="Jarrón de cerámica minimalista" />
                     <div class="product-card__body">
                         <span class="product-card__category">Hogar</span>
@@ -208,12 +208,12 @@
                         <p>Hecho en torno por artesanos locales con esmalte satinado y silueta clásica.</p>
                         <div class="product-card__footer">
                             <span class="price">$241.000</span>
-                            <button class="btn btn--small" type="button">Agregar al carrito</button>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
                         </div>
                         <a class="product-card__link" href="pages/producto-jarron-gres.html">Ver detalles del producto</a>
                     </div>
                 </article>
-                <article class="product-card" data-category="outdoor" data-tags="travel sustainable" data-price="128">
+                <article class="product-card" data-category="outdoor" data-tags="travel sustainable" data-price="128" data-product-id="morral-weekend" data-product-name="Morral Sendero Weekend" data-product-price="498000" data-product-url="pages/producto-morral-weekend.html" data-product-image="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80">
                     <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" alt="Mochila de viaje" />
                     <div class="product-card__body">
                         <span class="product-card__category">Aire libre</span>
@@ -221,12 +221,12 @@
                         <p>Mochila de nailon reciclado, liviana y con compartimentos modulares.</p>
                         <div class="product-card__footer">
                             <span class="price">$498.000</span>
-                            <button class="btn btn--small" type="button">Agregar al carrito</button>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
                         </div>
                         <a class="product-card__link" href="pages/producto-morral-weekend.html">Ver detalles del producto</a>
                     </div>
                 </article>
-                <article class="product-card" data-category="tech" data-tags="sustainable" data-price="89">
+                <article class="product-card" data-category="tech" data-tags="sustainable" data-price="89" data-product-id="parlante-nordic" data-product-name="Parlante Nordic Sound" data-product-price="346000" data-product-url="pages/producto-parlante-nordic.html" data-product-image="https://images.unsplash.com/photo-1490376840453-5f616fbebe5b?auto=format&fit=crop&w=800&q=80">
                     <img src="https://images.unsplash.com/photo-1490376840453-5f616fbebe5b?auto=format&fit=crop&w=800&q=80" alt="Parlante bluetooth de madera y tela" />
                     <div class="product-card__body">
                         <span class="product-card__category">Tecnología</span>
@@ -234,12 +234,12 @@
                         <p>Parlante bluetooth con 12 horas de batería y madera de origen responsable.</p>
                         <div class="product-card__footer">
                             <span class="price">$346.000</span>
-                            <button class="btn btn--small" type="button">Agregar al carrito</button>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
                         </div>
                         <a class="product-card__link" href="pages/producto-parlante-nordic.html">Ver detalles del producto</a>
                     </div>
                 </article>
-                <article class="product-card" data-category="beauty" data-tags="organic handmade" data-price="24">
+                <article class="product-card" data-category="beauty" data-tags="organic handmade" data-price="24" data-product-id="elixir-radiante" data-product-name="Elixir Facial Radiante" data-product-price="94000" data-product-url="pages/producto-elixir-radiante.html" data-product-image="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&w=800&q=80">
                     <img src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&w=800&q=80" alt="Frasco de aceite facial" />
                     <div class="product-card__body">
                         <span class="product-card__category">Belleza</span>
@@ -247,12 +247,12 @@
                         <p>Botánicos prensados en frío para hidratar, iluminar y proteger la piel.</p>
                         <div class="product-card__footer">
                             <span class="price">$94.000</span>
-                            <button class="btn btn--small" type="button">Agregar al carrito</button>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
                         </div>
                         <a class="product-card__link" href="pages/producto-elixir-radiante.html">Ver detalles del producto</a>
                     </div>
                 </article>
-                <article class="product-card" data-category="home" data-tags="handmade sustainable" data-price="54">
+                <article class="product-card" data-category="home" data-tags="handmade sustainable" data-price="54" data-product-id="manta-costera" data-product-name="Manta Costera en Lino" data-product-price="210000" data-product-url="pages/producto-manta-costera.html" data-product-image="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80">
                     <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Cobija suave de lino" />
                     <div class="product-card__body">
                         <span class="product-card__category">Hogar</span>
@@ -260,12 +260,12 @@
                         <p>Manta de lino transpirable tejida en pequeños lotes con tintes naturales.</p>
                         <div class="product-card__footer">
                             <span class="price">$210.000</span>
-                            <button class="btn btn--small" type="button">Agregar al carrito</button>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
                         </div>
                         <a class="product-card__link" href="pages/producto-manta-costera.html">Ver detalles del producto</a>
                     </div>
                 </article>
-                <article class="product-card" data-category="wellness" data-tags="relaxation handmade" data-price="48">
+                <article class="product-card" data-category="wellness" data-tags="relaxation handmade" data-price="48" data-product-id="set-aromaterapia" data-product-name="Set de Aromaterapia Ritual" data-product-price="187000" data-product-url="pages/producto-set-aromaterapia.html" data-product-image="https://images.unsplash.com/photo-1526413232644-8a3f83f3d6eb?auto=format&fit=crop&w=800&q=80">
                     <img src="https://images.unsplash.com/photo-1526413232644-8a3f83f3d6eb?auto=format&fit=crop&w=800&q=80" alt="Kit de difusor de aromaterapia" />
                     <div class="product-card__body">
                         <span class="product-card__category">Bienestar</span>
@@ -273,12 +273,12 @@
                         <p>Incluye difusor de cerámica, trío de aceites esenciales y guía de respiración consciente.</p>
                         <div class="product-card__footer">
                             <span class="price">$187.000</span>
-                            <button class="btn btn--small" type="button">Agregar al carrito</button>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
                         </div>
                         <a class="product-card__link" href="pages/producto-set-aromaterapia.html">Ver detalles del producto</a>
                     </div>
                 </article>
-                <article class="product-card" data-category="outdoor" data-tags="travel sustainable" data-price="76">
+                <article class="product-card" data-category="outdoor" data-tags="travel sustainable" data-price="76" data-product-id="set-picnic" data-product-name="Set de Picnic Evergreen" data-product-price="296000" data-product-url="pages/producto-set-picnic.html" data-product-image="https://images.unsplash.com/photo-1562376552-0d160a2f2387?auto=format&fit=crop&w=800&q=80">
                     <img src="https://images.unsplash.com/photo-1562376552-0d160a2f2387?auto=format&fit=crop&w=800&q=80" alt="Kit de picnic reutilizable" />
                     <div class="product-card__body">
                         <span class="product-card__category">Aire libre</span>
@@ -286,7 +286,7 @@
                         <p>Esenciales reutilizables para picnic elaborados en bambú y materiales reciclados.</p>
                         <div class="product-card__footer">
                             <span class="price">$296.000</span>
-                            <button class="btn btn--small" type="button">Agregar al carrito</button>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
                         </div>
                         <a class="product-card__link" href="pages/producto-set-picnic.html">Ver detalles del producto</a>
                     </div>

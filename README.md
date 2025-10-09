@@ -10,6 +10,7 @@ exploren colecciones o se suscriban a las novedades.
 - Chips de categoría, filtros por etiquetas y búsqueda instantánea para encontrar productos relevantes.
 - Grid de productos con precios, botones de acción y opciones de ordenamiento.
 - Cada producto destacado abre una página de detalle estilo marketplace con galería interactiva, reseñas y caja de compra.
+- Carrito persistente en todas las vistas con resumen dinámico, actualización de cantidades y flujo completo de checkout y confirmación.
 - Sección de revista que resalta artículos editoriales relacionados con los productos destacados.
 - Formulario de boletín, testimonios y mensajes enfocados en sostenibilidad.
 - Navegación a páginas dedicadas (colecciones, artículos, soporte, políticas y más) para ofrecer contexto ampliado sin alterar la landing principal.
@@ -31,6 +32,7 @@ Todos los enlaces de la barra de navegación y del pie de página dirigen a pág
 - `pages/colecciones.html`, `pages/mas-vendidos.html`, `pages/revista.html` y `pages/boletin.html` para las secciones editoriales y comerciales principales.
 - `pages/coleccion-rituales.html`, `pages/coleccion-bienestar.html` y `pages/coleccion-aventura.html` con detalle de cada colección destacada.
 - Ocho páginas de producto dedicadas (`pages/producto-te-botanico.html`, `pages/producto-morral-weekend.html`, etc.) con carrusel de imágenes y argumentos de venta listos para personalizar.
+- Flujo de compra completo: `pages/carrito.html` muestra los artículos seleccionados, `pages/checkout.html` recopila datos de envío y pago, y `pages/confirmacion.html` presenta el resumen final del pedido.
 - `pages/centro-de-ayuda.html`, `pages/envios-y-devoluciones.html` y `pages/rastrea-tu-pedido.html` con información de soporte.
 - `pages/politica-privacidad.html`, `pages/terminos-condiciones.html` y `pages/accesibilidad.html` para las políticas legales y de accesibilidad.
 
