@@ -4,8 +4,13 @@ const chips = document.querySelectorAll('.chip');
 const tags = document.querySelectorAll('.tag');
 const productCards = Array.from(document.querySelectorAll('.product-card'));
 const productSearch = document.querySelector('#product-search');
+const searchButtons = document.querySelectorAll('[data-search-button]');
 const sortSelect = document.querySelector('#sort-products');
 const yearEls = document.querySelectorAll('[data-year]');
+const initialSearchParam = new URLSearchParams(window.location.search).get('search') || '';
+
+let searchOverlayElements = null;
+let lastFocusedElement = null;
 
 if (yearEls.length > 0) {
     const currentYear = new Date().getFullYear();
@@ -19,6 +24,10 @@ if (navToggle && nav) {
         const isOpen = nav.classList.toggle('is-open');
         navToggle.setAttribute('aria-expanded', isOpen);
     });
+}
+
+if (productSearch && initialSearchParam) {
+    productSearch.value = initialSearchParam;
 }
 
 function resetActiveChips(activeButton) {
@@ -68,6 +77,170 @@ if (productSearch) {
     });
 }
 
+function handleSearchOverlayKeydown(event) {
+    if (event.key === 'Escape') {
+        closeSearchOverlay();
+    }
+}
+
+function getIndexPath() {
+    return window.location.pathname.includes('/pages/') ? '../index.html' : 'index.html';
+}
+
+function ensureSearchOverlay() {
+    if (searchOverlayElements) {
+        return searchOverlayElements;
+    }
+
+    const overlay = document.createElement('div');
+    overlay.className = 'search-overlay';
+    overlay.setAttribute('data-search-overlay', '');
+    overlay.setAttribute('aria-hidden', 'true');
+
+    const dialog = document.createElement('div');
+    dialog.className = 'search-overlay__dialog';
+    dialog.setAttribute('role', 'dialog');
+    dialog.setAttribute('aria-modal', 'true');
+    dialog.setAttribute('aria-labelledby', 'search-overlay-title');
+
+    const closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.className = 'search-overlay__close';
+    closeButton.setAttribute('data-search-close', '');
+    closeButton.setAttribute('aria-label', 'Cerrar búsqueda');
+    closeButton.innerHTML = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></line>
+            <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></line>
+        </svg>
+    `;
+
+    const title = document.createElement('h2');
+    title.id = 'search-overlay-title';
+    title.className = 'search-overlay__title';
+    title.textContent = 'Buscar en Northwind Colectivo';
+
+    const form = document.createElement('form');
+    form.className = 'search-overlay__form';
+    form.setAttribute('data-search-form', '');
+    form.setAttribute('role', 'search');
+
+    const field = document.createElement('div');
+    field.className = 'search-overlay__field';
+
+    const label = document.createElement('label');
+    label.className = 'sr-only';
+    label.setAttribute('for', 'search-overlay-input');
+    label.textContent = 'Buscar productos';
+
+    const input = document.createElement('input');
+    input.type = 'search';
+    input.id = 'search-overlay-input';
+    input.name = 'search';
+    input.setAttribute('data-search-input', '');
+    input.placeholder = 'Busca productos, categorías o artículos';
+    input.autocomplete = 'off';
+
+    const submitButton = document.createElement('button');
+    submitButton.type = 'submit';
+    submitButton.className = 'btn btn--small';
+    submitButton.textContent = 'Buscar';
+
+    const hint = document.createElement('p');
+    hint.className = 'search-overlay__hint';
+    hint.textContent = 'Sugerencia: prueba con “aromaterapia”, “regalos corporativos” o “tapete de yoga”.';
+
+    field.append(label, input, submitButton);
+    form.append(field);
+    dialog.append(closeButton, title, form, hint);
+    overlay.append(dialog);
+    document.body.append(overlay);
+
+    closeButton.addEventListener('click', () => {
+        closeSearchOverlay();
+    });
+
+    overlay.addEventListener('click', (event) => {
+        if (event.target === overlay) {
+            closeSearchOverlay();
+        }
+    });
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const query = input.value.trim();
+
+        if (productSearch) {
+            productSearch.value = query;
+            closeSearchOverlay();
+            filterProducts({
+                category: document.querySelector('.chip.is-active')?.dataset.filter || 'all',
+                search: query,
+            });
+            productSearch.focus();
+            return;
+        }
+
+        const destinationUrl = new URL(getIndexPath(), window.location.href);
+
+        if (query) {
+            destinationUrl.searchParams.set('search', query);
+        } else {
+            destinationUrl.search = '';
+        }
+
+        closeSearchOverlay();
+        window.location.href = destinationUrl.toString();
+    });
+
+    searchOverlayElements = { overlay, input };
+    return searchOverlayElements;
+}
+
+function openSearchOverlay(trigger) {
+    const { overlay, input } = ensureSearchOverlay();
+
+    lastFocusedElement = trigger || document.activeElement;
+
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('has-search-overlay');
+
+    input.value = productSearch?.value || initialSearchParam || '';
+
+    requestAnimationFrame(() => {
+        input.focus({ preventScroll: true });
+        input.select();
+    });
+
+    document.addEventListener('keydown', handleSearchOverlayKeydown);
+}
+
+function closeSearchOverlay() {
+    if (!searchOverlayElements) {
+        return;
+    }
+
+    const { overlay } = searchOverlayElements;
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('has-search-overlay');
+    document.removeEventListener('keydown', handleSearchOverlayKeydown);
+
+    if (lastFocusedElement instanceof HTMLElement) {
+        lastFocusedElement.focus({ preventScroll: true });
+    }
+}
+
+if (searchButtons.length > 0) {
+    searchButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            openSearchOverlay(button);
+        });
+    });
+}
+
 function sortProducts(criteria) {
     const grid = document.querySelector('#product-grid');
     if (!grid) return;
@@ -100,7 +273,7 @@ if (sortSelect) {
 }
 
 // Ensure default state is visible on load
-filterProducts({ category: 'all' });
+filterProducts({ category: 'all', search: productSearch?.value || initialSearchParam || '' });
 sortProducts(sortSelect?.value || 'featured');
 
 productCards.forEach((card) => {
