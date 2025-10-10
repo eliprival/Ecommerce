@@ -9,8 +9,379 @@ const sortSelect = document.querySelector('#sort-products');
 const yearEls = document.querySelectorAll('[data-year]');
 const initialSearchParam = new URLSearchParams(window.location.search).get('search') || '';
 
+function normalizeText(text = '') {
+    return text
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase();
+}
+
+const productCatalog = [
+    {
+        id: 'te-botanico',
+        name: 'Té Botánico Nocturno',
+        category: 'Bienestar',
+        price: 148000,
+        url: 'pages/producto-te-botanico.html',
+        image: 'https://images.unsplash.com/photo-1505577058444-a3dab90d4253?auto=format&fit=crop&w=800&q=80',
+        keywords: [
+            'té',
+            'infusión',
+            'relajación',
+            'botánico',
+            'nocturno',
+            'hierbas naturales',
+            'rutina de descanso',
+        ],
+    },
+    {
+        id: 'jarron-gres',
+        name: 'Jarrón Artesanal en Gres',
+        category: 'Hogar',
+        price: 241000,
+        url: 'pages/producto-jarron-gres.html',
+        image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80',
+        keywords: [
+            'decoración',
+            'artesanal',
+            'cerámica',
+            'hecho a mano',
+            'florero',
+            'centro de mesa',
+        ],
+    },
+    {
+        id: 'morral-weekend',
+        name: 'Morral Sendero Weekend',
+        category: 'Aire libre',
+        price: 498000,
+        url: 'pages/producto-morral-weekend.html',
+        image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80',
+        keywords: [
+            'mochila',
+            'viajes',
+            'aventura',
+            'impermeable',
+            'capacidad amplia',
+            'excursiones',
+        ],
+    },
+    {
+        id: 'parlante-nordic',
+        name: 'Parlante Nordic Sound',
+        category: 'Tecnología',
+        price: 346000,
+        url: 'pages/producto-parlante-nordic.html',
+        image: 'https://images.unsplash.com/photo-1490376840453-5f616fbebe5b?auto=format&fit=crop&w=800&q=80',
+        keywords: [
+            'audio',
+            'bluetooth',
+            'inalámbrico',
+            'sonido premium',
+            'diseño nórdico',
+            'minimalista',
+        ],
+    },
+    {
+        id: 'elixir-radiante',
+        name: 'Elixir Facial Radiante',
+        category: 'Belleza',
+        price: 94000,
+        url: 'pages/producto-elixir-radiante.html',
+        image: 'https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&w=800&q=80',
+        keywords: [
+            'cuidado facial',
+            'serum',
+            'piel luminosa',
+            'aceites naturales',
+            'rutina de belleza',
+            'antioxidantes',
+        ],
+    },
+    {
+        id: 'manta-costera',
+        name: 'Manta Costera en Lino',
+        category: 'Hogar',
+        price: 210000,
+        url: 'pages/producto-manta-costera.html',
+        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+        keywords: [
+            'textiles',
+            'mantas',
+            'decoración',
+            'lino',
+            'acolchado',
+            'acogedor',
+        ],
+    },
+    {
+        id: 'set-aromaterapia',
+        name: 'Set de Aromaterapia Ritual',
+        category: 'Bienestar',
+        price: 187000,
+        url: 'pages/producto-set-aromaterapia.html',
+        image: 'https://images.unsplash.com/photo-1526413232644-8a3f83f3d6eb?auto=format&fit=crop&w=800&q=80',
+        keywords: [
+            'aceites esenciales',
+            'aromaterapia',
+            'relajación',
+            'spa en casa',
+            'rituales',
+            'bienestar',
+        ],
+    },
+    {
+        id: 'set-picnic',
+        name: 'Set de Picnic Evergreen',
+        category: 'Aire libre',
+        price: 296000,
+        url: 'pages/producto-set-picnic.html',
+        image: 'https://images.unsplash.com/photo-1562376552-0d160a2f2387?auto=format&fit=crop&w=800&q=80',
+        keywords: [
+            'picnic',
+            'kit completo',
+            'camping',
+            'aire libre',
+            'familia',
+            'plan de fin de semana',
+        ],
+    },
+].map((product, index) => {
+    const keywords = Array.from(new Set([product.category, ...(product.keywords || [])])).filter(Boolean);
+    return {
+        ...product,
+        keywords,
+        normalizedName: normalizeText(product.name),
+        normalizedKeywords: normalizeText([product.name, product.category, ...keywords].join(' ')),
+        order: index,
+    };
+});
+
 let searchOverlayElements = null;
 let lastFocusedElement = null;
+
+productCards.forEach((card) => {
+    const productId = card.dataset.productId;
+
+    if (!productId) {
+        return;
+    }
+
+    const entry = productCatalog.find((product) => product.id === productId);
+    const fallbackName = card.querySelector('h3')?.textContent?.trim();
+    const fallbackCategory = card.querySelector('.product-card__category')?.textContent?.trim();
+    const cardKeywords = (card.dataset.tags || '').split(/\s+/).filter(Boolean);
+    const cardUrl = card.dataset.productUrl || card.querySelector('.product-card__link')?.getAttribute('href') || '';
+    const cardImage = card.dataset.productImage || card.querySelector('img')?.src || '';
+    const priceValue = Number.parseInt(card.dataset.productPrice || '0', 10);
+
+    if (entry) {
+        entry.name = entry.name || fallbackName || '';
+        entry.category = entry.category || fallbackCategory || '';
+        entry.url = entry.url || cardUrl;
+        entry.image = entry.image || cardImage;
+        entry.price = entry.price || (Number.isNaN(priceValue) ? 0 : priceValue);
+        entry.keywords = Array.from(new Set([...(entry.keywords || []), ...cardKeywords, entry.category].filter(Boolean)));
+        entry.normalizedName = normalizeText(entry.name);
+        entry.normalizedKeywords = normalizeText([entry.name, entry.category, ...(entry.keywords || [])].join(' '));
+    } else {
+        const keywords = Array.from(new Set([fallbackCategory, ...cardKeywords].filter(Boolean)));
+        const newEntry = {
+            id: productId,
+            name: fallbackName || '',
+            category: fallbackCategory || '',
+            price: Number.isNaN(priceValue) ? 0 : priceValue,
+            url: cardUrl,
+            image: cardImage,
+            keywords,
+            order: productCatalog.length,
+            normalizedName: normalizeText(fallbackName || ''),
+            normalizedKeywords: normalizeText([fallbackName || '', fallbackCategory || '', ...keywords].join(' ')),
+        };
+        productCatalog.push(newEntry);
+    }
+});
+
+const defaultSearchSuggestions = productCatalog
+    .slice()
+    .sort((a, b) => a.order - b.order)
+    .slice(0, 6);
+
+function resolveProductUrl(url) {
+    if (!url) {
+        return '#';
+    }
+
+    if (/^(https?:)?\/\//.test(url) || url.startsWith('/')) {
+        return url;
+    }
+
+    if (window.location.pathname.includes('/pages/')) {
+        if (url.startsWith('../')) {
+            return safePath(url);
+        }
+
+        if (url.startsWith('pages/')) {
+            return safePath(`../${url}`);
+        }
+
+        return safePath(url);
+    }
+
+    return safePath(url);
+}
+
+function highlightMatch(text, query) {
+    if (!query) {
+        return text;
+    }
+
+    const terms = query
+        .split(/\s+/)
+        .filter(Boolean)
+        .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+
+    if (terms.length === 0) {
+        return text;
+    }
+
+    const pattern = new RegExp(`(${terms.join('|')})`, 'gi');
+    return text.replace(pattern, '<mark>$1</mark>');
+}
+
+function searchProducts(query) {
+    const normalizedQuery = normalizeText(query.trim());
+
+    if (!normalizedQuery) {
+        return defaultSearchSuggestions;
+    }
+
+    const queryTerms = normalizedQuery.split(/\s+/).filter(Boolean);
+
+    if (queryTerms.length === 0) {
+        return defaultSearchSuggestions;
+    }
+
+    const matches = productCatalog
+        .map((product) => {
+            let score = 0;
+
+            for (const term of queryTerms) {
+                const keywordIndex = product.normalizedKeywords.indexOf(term);
+
+                if (keywordIndex === -1) {
+                    score = -1;
+                    break;
+                }
+
+                score += keywordIndex === 0 ? 3 : 1;
+
+                if (product.normalizedName.startsWith(term)) {
+                    score += 2;
+                }
+            }
+
+            return { product, score };
+        })
+        .filter((entry) => entry.score >= 0)
+        .sort((a, b) => b.score - a.score || a.product.order - b.product.order);
+
+    if (matches.length === 0) {
+        return [];
+    }
+
+    return matches.slice(0, 6).map((entry) => entry.product);
+}
+
+function updateSearchSuggestions(query = '') {
+    if (!searchOverlayElements) {
+        return;
+    }
+
+    const { resultsList, emptyState } = searchOverlayElements;
+    const results = searchProducts(query);
+
+    if (results.length === 0) {
+        resultsList.innerHTML = '';
+        resultsList.hidden = true;
+
+        if (emptyState) {
+            emptyState.hidden = false;
+            emptyState.textContent = query
+                ? `No encontramos coincidencias para “${query}”. Prueba con palabras como manta, aromaterapia o parlante.`
+                : 'Escribe el nombre de un producto o categoría para ver sugerencias disponibles.';
+        }
+
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    results.forEach((product) => {
+        const item = document.createElement('li');
+        item.className = 'search-overlay__result';
+        item.setAttribute('role', 'option');
+
+        const link = document.createElement('a');
+        link.className = 'search-overlay__result-link';
+        link.href = resolveProductUrl(product.url);
+        link.setAttribute('data-search-result', product.id);
+
+        const preview = document.createElement('div');
+        preview.className = 'search-overlay__result-preview';
+
+        if (product.image) {
+            const image = document.createElement('img');
+            image.src = product.image;
+            image.alt = '';
+            image.loading = 'lazy';
+            preview.append(image);
+        }
+
+        const content = document.createElement('div');
+        content.className = 'search-overlay__result-content';
+
+        const title = document.createElement('p');
+        title.className = 'search-overlay__result-title';
+        title.innerHTML = highlightMatch(product.name, query);
+
+        const meta = document.createElement('p');
+        meta.className = 'search-overlay__result-meta';
+        const metaParts = [product.category].filter(Boolean);
+
+        if (product.price) {
+            metaParts.push(formatCurrency(product.price));
+        }
+
+        meta.textContent = metaParts.join(' · ');
+
+        content.append(title, meta);
+
+        if (product.keywords?.length) {
+            const tags = document.createElement('p');
+            tags.className = 'search-overlay__result-tags';
+            product.keywords.slice(0, 3).forEach((keyword) => {
+                const tag = document.createElement('span');
+                tag.className = 'search-overlay__result-tag';
+                tag.textContent = keyword;
+                tags.append(tag);
+            });
+            content.append(tags);
+        }
+
+        link.append(preview, content);
+        item.append(link);
+        fragment.append(item);
+    });
+
+    resultsList.innerHTML = '';
+    resultsList.append(fragment);
+    resultsList.hidden = false;
+
+    if (emptyState) {
+        emptyState.hidden = true;
+    }
+}
 
 if (yearEls.length > 0) {
     const currentYear = new Date().getFullYear();
@@ -67,6 +438,44 @@ tags.forEach((tag) => {
 });
 
 if (productSearch) {
+    const datalistId = productSearch.id ? `${productSearch.id}-sugerencias` : 'product-search-sugerencias';
+    let dataList = document.getElementById(datalistId);
+
+    if (!dataList) {
+        dataList = document.createElement('datalist');
+        dataList.id = datalistId;
+
+        if (productSearch.parentElement) {
+            productSearch.parentElement.appendChild(dataList);
+        } else {
+            document.body.appendChild(dataList);
+        }
+    }
+
+    const keywordSet = new Set();
+    productCatalog.forEach((product) => {
+        if (product.name) {
+            keywordSet.add(product.name);
+        }
+
+        (product.keywords || []).forEach((keyword) => {
+            if (keyword) {
+                keywordSet.add(keyword);
+            }
+        });
+    });
+
+    dataList.innerHTML = '';
+    Array.from(keywordSet)
+        .slice(0, 24)
+        .forEach((term) => {
+            const option = document.createElement('option');
+            option.value = term;
+            dataList.append(option);
+        });
+
+    productSearch.setAttribute('list', datalistId);
+
     productSearch.addEventListener('input', (event) => {
         filterProducts({ category: document.querySelector('.chip.is-active')?.dataset.filter || 'all', search: event.target.value });
     });
@@ -148,11 +557,21 @@ function ensureSearchOverlay() {
 
     const hint = document.createElement('p');
     hint.className = 'search-overlay__hint';
-    hint.textContent = 'Sugerencia: prueba con “aromaterapia”, “regalos corporativos” o “tapete de yoga”.';
+    hint.textContent = 'Sugerencia: escribe palabras como “aromaterapia”, “manta” o “morral” para ver coincidencias.';
+
+    const resultsList = document.createElement('ul');
+    resultsList.className = 'search-overlay__results';
+    resultsList.setAttribute('role', 'listbox');
+    resultsList.hidden = true;
+
+    const emptyState = document.createElement('p');
+    emptyState.className = 'search-overlay__empty';
+    emptyState.hidden = true;
+    emptyState.setAttribute('aria-live', 'polite');
 
     field.append(label, input, submitButton);
     form.append(field);
-    dialog.append(closeButton, title, form, hint);
+    dialog.append(closeButton, title, form, hint, resultsList, emptyState);
     overlay.append(dialog);
     document.body.append(overlay);
 
@@ -193,7 +612,21 @@ function ensureSearchOverlay() {
         window.location.href = destinationUrl.toString();
     });
 
-    searchOverlayElements = { overlay, input };
+    input.addEventListener('input', () => {
+        updateSearchSuggestions(input.value);
+    });
+
+    resultsList.addEventListener('click', (event) => {
+        const link = event.target.closest('[data-search-result]');
+        if (!link) {
+            return;
+        }
+
+        closeSearchOverlay();
+    });
+
+    searchOverlayElements = { overlay, input, resultsList, emptyState };
+    updateSearchSuggestions(input.value);
     return searchOverlayElements;
 }
 
@@ -207,6 +640,7 @@ function openSearchOverlay(trigger) {
     document.body.classList.add('has-search-overlay');
 
     input.value = productSearch?.value || initialSearchParam || '';
+    updateSearchSuggestions(input.value);
 
     requestAnimationFrame(() => {
         input.focus({ preventScroll: true });
