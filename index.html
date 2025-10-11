@@ -49,8 +49,8 @@
                     <li><a href="index.html" aria-current="page">Inicio</a></li>
                     <li><a href="pages/colecciones.html">Colecciones</a></li>
                     <li><a href="pages/mas-vendidos.html">Más vendidos</a></li>
+                    <li><a href="pages/todos-los-productos.html">Todos los productos</a></li>
                     <li><a href="pages/revista.html">Revista</a></li>
-                    <li><a href="pages/boletin.html">Boletín</a></li>
                 </ul>
             </nav>
             <div class="actions">
@@ -128,31 +128,7 @@
             </div>
         </section>
 
-        <section class="filters" aria-label="Filtros de productos">
-            <div class="container filters__inner">
-                <div class="filter-group">
-                    <h2>Explora por categoría</h2>
-                    <div class="chip-group" role="list">
-                        <button class="chip is-active" data-filter="all">Todos</button>
-                        <button class="chip" data-filter="wellness">Bienestar</button>
-                        <button class="chip" data-filter="home">Hogar</button>
-                        <button class="chip" data-filter="outdoor">Aire libre</button>
-                        <button class="chip" data-filter="tech">Tecnología</button>
-                        <button class="chip" data-filter="beauty">Belleza</button>
-                    </div>
-                </div>
-                <div class="filter-group">
-                    <h2>Etiquetas populares</h2>
-                    <div class="tag-cloud" role="list">
-                        <button class="tag" data-filter="sustainable">Sostenible</button>
-                        <button class="tag" data-filter="handmade">Hecho a mano</button>
-                        <button class="tag" data-filter="organic">Orgánico</button>
-                        <button class="tag" data-filter="relaxation">Relajación</button>
-                        <button class="tag" data-filter="travel">Viajes</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
 
         <section id="collections" class="collections">
             <div class="container section-heading">
@@ -196,14 +172,17 @@
                     <p class="eyebrow">Más vendidos</p>
                     <h2 id="products-title">Seleccionados para ti</h2>
                 </div>
-                <div class="sort">
-                    <label for="sort-products">Ordenar</label>
-                    <select id="sort-products" name="sort">
-                        <option value="featured">Destacados</option>
-                        <option value="price-low">Precio: menor a mayor</option>
-                        <option value="price-high">Precio: mayor a menor</option>
-                        <option value="new">Novedades</option>
-                    </select>
+                <div class="section-heading__controls">
+                    <a class="link" href="pages/todos-los-productos.html">Ver todos los productos</a>
+                    <div class="sort">
+                        <label for="sort-products">Ordenar</label>
+                        <select id="sort-products" name="sort">
+                            <option value="featured">Destacados</option>
+                            <option value="price-low">Precio: menor a mayor</option>
+                            <option value="price-high">Precio: mayor a menor</option>
+                            <option value="new">Novedades</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="container grid grid--products" id="product-grid">

@@ -5,10 +5,10 @@ exploren colecciones o se suscriban a las novedades.
 
 ## Características
 
-- Barra de navegación fija con menú móvil para recorrer las secciones con facilidad.
+- Barra de navegación fija con menú móvil y acceso directo a colecciones, más vendidos y el catálogo completo.
 - Sección hero con buscador, propuesta de valor e imágenes inspiradoras.
-- Chips de categoría, filtros por etiquetas y búsqueda instantánea para encontrar productos relevantes.
-- Grid de productos con precios, botones de acción y opciones de ordenamiento.
+- Vista de "Todos los productos" con chips de categoría, filtros por etiquetas y búsqueda instantánea para encontrar piezas relevantes.
+- La landing destaca los más vendidos con precios, botones de acción y opciones de ordenamiento.
 - Cada producto destacado abre una página de detalle estilo marketplace con galería interactiva, reseñas y caja de compra.
 - Carrito persistente en todas las vistas con resumen dinámico, actualización de cantidades y flujo completo de checkout y confirmación.
 - Sección de revista que resalta artículos editoriales relacionados con los productos destacados.
@@ -29,7 +29,7 @@ Personaliza la información de productos, imágenes y contenido editorial direct
 
 Todos los enlaces de la barra de navegación y del pie de página dirigen a páginas individuales dentro de la carpeta `pages/`. Algunas de las más consultadas son:
 
-- `pages/colecciones.html`, `pages/mas-vendidos.html`, `pages/revista.html` y `pages/boletin.html` para las secciones editoriales y comerciales principales.
+- `pages/colecciones.html`, `pages/mas-vendidos.html`, `pages/todos-los-productos.html` y `pages/revista.html` para las secciones editoriales y comerciales principales. `pages/boletin.html` sigue disponible desde llamados a la acción específicos.
 - `pages/coleccion-rituales.html`, `pages/coleccion-bienestar.html` y `pages/coleccion-aventura.html` con detalle de cada colección destacada.
 - Ocho páginas de producto dedicadas (`pages/producto-te-botanico.html`, `pages/producto-morral-weekend.html`, etc.) con carrusel de imágenes y argumentos de venta listos para personalizar.
 - Flujo de compra completo: `pages/carrito.html` muestra los artículos seleccionados, `pages/checkout.html` recopila datos de envío y pago, y `pages/confirmacion.html` presenta el resumen final del pedido.

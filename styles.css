@@ -673,6 +673,27 @@ body.has-search-overlay {
     margin-bottom: 2.5rem;
 }
 
+
+.section-heading__controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.section-heading__controls .link {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+    .section-heading__controls {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+
 .collections {
     padding: 4rem 0 2rem;
 }

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todos los productos | Northwind Colectivo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div class="announcement-bar" role="status">
+        <div class="container announcement-bar__inner">
+            <span>Free shipping</span>
+            <span>Envíos a toda Colombia</span>
+            <span>Emprende</span>
+        </div>
+    </div>
+    <header class="top-bar">
+        <div class="container top-bar__inner">
+            <a class="brand" href="../index.html" aria-label="Volver al inicio de Northwind Colectivo">
+                <span class="brand__logo" aria-hidden="true">
+                    <svg viewBox="0 0 72 72" role="img" aria-hidden="true" focusable="false">
+                        <defs>
+                            <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f7c948" />
+                                <stop offset="100%" stop-color="#2f7d5c" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="36" cy="36" r="32" fill="url(#brandGradient)" />
+                        <circle cx="36" cy="36" r="26" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.85" />
+                        <path d="M36 16c5.3 5.1 9.6 13.6 9.6 20.7 0 7.1-4.3 11.6-9.6 11.6s-9.6-4.5-9.6-11.6C26.4 29.6 30.7 21.1 36 16z" fill="#ffffff" opacity="0.8" />
+                        <path d="M20 47c6.2-3.5 10.8-5.3 16-5.3s9.8 1.8 16 5.3l-5.6 9.4c-3.4-1.8-6.6-2.9-10.4-2.9s-7 1.1-10.4 2.9L20 47z" fill="#ffffff" opacity="0.9" />
+                        <circle cx="36" cy="32" r="4" fill="#2f7d5c" opacity="0.9" />
+                    </svg>
+                </span>
+                <span class="sr-only">Northwind Colectivo</span>
+            </a>
+            <button class="menu-toggle" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="sr-only">Alternar navegación</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 6h18M3 12h18M3 18h18" />
+                </svg>
+            </button>
+            <nav id="primary-navigation" class="nav" aria-label="Navegación principal">
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="colecciones.html">Colecciones</a></li>
+                    <li><a href="mas-vendidos.html">Más vendidos</a></li>
+                    <li><a href="todos-los-productos.html" aria-current="page">Todos los productos</a></li>
+                    <li><a href="revista.html">Revista</a></li>
+                </ul>
+            </nav>
+            <div class="actions">
+                <a class="btn btn--pill" href="centro-de-ayuda.html">Contáctanos</a>
+                <div class="action-icons" role="group" aria-label="Acciones de cuenta y carrito">
+                    <button class="icon-button" type="button" data-search-button>
+                        <span class="sr-only">Buscar</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7" />
+                            <line x1="20" y1="20" x2="16.65" y2="16.65" />
+                        </svg>
+                    </button>
+                    <button class="icon-button" type="button">
+                        <span class="sr-only">Regístrate</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="7" r="4" />
+                            <path d="M5 21v-1a7 7 0 0 1 7-7h0" />
+                            <line x1="19" y1="16" x2="19" y2="22" />
+                            <line x1="22" y1="19" x2="16" y2="19" />
+                        </svg>
+                    </button>
+                    <button class="icon-button" type="button">
+                        <span class="sr-only">Iniciar sesión</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                            <polyline points="10 17 15 12 10 7" />
+                            <line x1="15" y1="12" x2="3" y2="12" />
+                        </svg>
+                    </button>
+                    <a class="icon-button icon-button--cart" href="carrito.html">
+                        <span class="sr-only">Abrir carrito</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="9" cy="21" r="1" />
+                            <circle cx="19" cy="21" r="1" />
+                            <path d="M2 3h3l2.4 12.34A2 2 0 0 0 9.36 17h9.28a2 2 0 0 0 1.96-1.66L22 7H6" />
+                        </svg>
+                        <span class="icon-button__badge" data-cart-count>0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="simple-page catalog-intro">
+            <div class="container simple-page__header">
+                <a class="back-link" href="../index.html">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <polyline points="15 6 9 12 15 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <line x1="9" y1="12" x2="21" y2="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Volver al inicio
+                </a>
+                <p class="eyebrow">Explora el catálogo</p>
+                <h1>Todos los productos de Northwind Colectivo</h1>
+                <p class="lead">Filtra por categoría, etiqueta o palabra clave para encontrar piezas pensadas para tus rituales, tu hogar y tus aventuras por Colombia.</p>
+                <div class="simple-page__actions">
+                    <a class="btn" href="mas-vendidos.html">Ver más vendidos</a>
+                    <a class="btn btn--ghost" href="colecciones.html">Descubrir colecciones</a>
+                </div>
+            </div>
+        </section>
+        <section class="filters filters--catalog" aria-label="Filtros del catálogo">
+            <div class="container filters__inner">
+                <div class="filter-group">
+                    <h2>Explora por categoría</h2>
+                    <div class="chip-group" role="list">
+                        <button class="chip is-active" data-filter="all">Todos</button>
+                        <button class="chip" data-filter="wellness">Bienestar</button>
+                        <button class="chip" data-filter="home">Hogar</button>
+                        <button class="chip" data-filter="outdoor">Aire libre</button>
+                        <button class="chip" data-filter="tech">Tecnología</button>
+                        <button class="chip" data-filter="beauty">Belleza</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h2>Etiquetas populares</h2>
+                    <div class="tag-cloud" role="list">
+                        <button class="tag" data-filter="sustainable">Sostenible</button>
+                        <button class="tag" data-filter="handmade">Hecho a mano</button>
+                        <button class="tag" data-filter="organic">Orgánico</button>
+                        <button class="tag" data-filter="relaxation">Relajación</button>
+                        <button class="tag" data-filter="travel">Viajes</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="products catalog-products" aria-labelledby="catalog-title">
+            <div class="container section-heading">
+                <div>
+                    <p class="eyebrow">Catálogo completo</p>
+                    <h2 id="catalog-title">Selecciona por categoría o palabra clave</h2>
+                </div>
+                <div class="section-heading__controls">
+                    <a class="link" href="../index.html#best-sellers">Ver resumen de destacados</a>
+                    <div class="sort">
+                        <label for="sort-products">Ordenar</label>
+                        <select id="sort-products" name="sort">
+                            <option value="featured">Destacados</option>
+                            <option value="price-low">Precio: menor a mayor</option>
+                            <option value="price-high">Precio: mayor a menor</option>
+                            <option value="new">Novedades</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="container grid grid--products" id="product-grid">
+                <!-- Product cards duplicated from landing -->
+                <article class="product-card" data-category="wellness" data-tags="organic relaxation" data-price="38" data-product-id="te-botanico" data-product-name="Té Botánico Nocturno" data-product-price="148000" data-product-url="producto-te-botanico.html" data-product-image="https://images.unsplash.com/photo-1505577058444-a3dab90d4253?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1505577058444-a3dab90d4253?auto=format&fit=crop&w=800&q=80" alt="Tetera de vidrio y té herbal" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Bienestar</span>
+                        <h3>Té Botánico Nocturno</h3>
+                        <p>Mezcla relajante de hojas sueltas con manzanilla, valeriana y toronjil.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$148.000</span>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
+                        </div>
+                        <a class="product-card__link" href="producto-te-botanico.html">Ver detalles del producto</a>
+                    </div>
+                </article>
+                <article class="product-card" data-category="home" data-tags="handmade sustainable" data-price="62" data-product-id="jarron-gres" data-product-name="Jarrón Artesanal en Gres" data-product-price="241000" data-product-url="producto-jarron-gres.html" data-product-image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" alt="Jarrón de cerámica minimalista" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Hogar</span>
+                        <h3>Jarrón Artesanal en Gres</h3>
+                        <p>Hecho en torno por artesanos locales con esmalte satinado y silueta clásica.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$241.000</span>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
+                        </div>
+                        <a class="product-card__link" href="producto-jarron-gres.html">Ver detalles del producto</a>
+                    </div>
+                </article>
+                <article class="product-card" data-category="outdoor" data-tags="travel sustainable" data-price="128" data-product-id="morral-weekend" data-product-name="Morral Sendero Weekend" data-product-price="498000" data-product-url="producto-morral-weekend.html" data-product-image="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" alt="Mochila de viaje" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Aire libre</span>
+                        <h3>Morral Sendero Weekend</h3>
+                        <p>Mochila de nailon reciclado, liviana y con compartimentos modulares.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$498.000</span>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
+                        </div>
+                        <a class="product-card__link" href="producto-morral-weekend.html">Ver detalles del producto</a>
+                    </div>
+                </article>
+                <article class="product-card" data-category="tech" data-tags="sustainable" data-price="89" data-product-id="parlante-nordic" data-product-name="Parlante Nordic Sound" data-product-price="346000" data-product-url="producto-parlante-nordic.html" data-product-image="https://images.unsplash.com/photo-1490376840453-5f616fbebe5b?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1490376840453-5f616fbebe5b?auto=format&fit=crop&w=800&q=80" alt="Parlante bluetooth de madera y tela" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Tecnología</span>
+                        <h3>Parlante Nordic Sound</h3>
+                        <p>Parlante bluetooth con 12 horas de batería y madera de origen responsable.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$346.000</span>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
+                        </div>
+                        <a class="product-card__link" href="producto-parlante-nordic.html">Ver detalles del producto</a>
+                    </div>
+                </article>
+                <article class="product-card" data-category="beauty" data-tags="organic handmade" data-price="24" data-product-id="elixir-radiante" data-product-name="Elixir Facial Radiante" data-product-price="94000" data-product-url="producto-elixir-radiante.html" data-product-image="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&w=800&q=80" alt="Frasco de aceite facial" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Belleza</span>
+                        <h3>Elixir Facial Radiante</h3>
+                        <p>Botánicos prensados en frío para hidratar, iluminar y proteger la piel.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$94.000</span>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
+                        </div>
+                        <a class="product-card__link" href="producto-elixir-radiante.html">Ver detalles del producto</a>
+                    </div>
+                </article>
+                <article class="product-card" data-category="home" data-tags="handmade sustainable" data-price="54" data-product-id="manta-costera" data-product-name="Manta Costera en Lino" data-product-price="210000" data-product-url="producto-manta-costera.html" data-product-image="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Cobija suave de lino" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Hogar</span>
+                        <h3>Manta Costera en Lino</h3>
+                        <p>Manta de lino transpirable tejida en pequeños lotes con tintes naturales.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$210.000</span>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
+                        </div>
+                        <a class="product-card__link" href="producto-manta-costera.html">Ver detalles del producto</a>
+                    </div>
+                </article>
+                <article class="product-card" data-category="wellness" data-tags="relaxation handmade" data-price="48" data-product-id="set-aromaterapia" data-product-name="Set de Aromaterapia Ritual" data-product-price="187000" data-product-url="producto-set-aromaterapia.html" data-product-image="https://images.unsplash.com/photo-1526413232644-8a3f83f3d6eb?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1526413232644-8a3f83f3d6eb?auto=format&fit=crop&w=800&q=80" alt="Kit de difusor de aromaterapia" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Bienestar</span>
+                        <h3>Set de Aromaterapia Ritual</h3>
+                        <p>Incluye difusor de cerámica, trío de aceites esenciales y guía de respiración consciente.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$187.000</span>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
+                        </div>
+                        <a class="product-card__link" href="producto-set-aromaterapia.html">Ver detalles del producto</a>
+                    </div>
+                </article>
+                <article class="product-card" data-category="outdoor" data-tags="travel sustainable" data-price="76" data-product-id="set-picnic" data-product-name="Set de Picnic Evergreen" data-product-price="296000" data-product-url="producto-set-picnic.html" data-product-image="https://images.unsplash.com/photo-1562376552-0d160a2f2387?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1562376552-0d160a2f2387?auto=format&fit=crop&w=800&q=80" alt="Kit de picnic reutilizable" />
+                    <div class="product-card__body">
+                        <span class="product-card__category">Aire libre</span>
+                        <h3>Set de Picnic Evergreen</h3>
+                        <p>Esenciales reutilizables para picnic elaborados en bambú y materiales reciclados.</p>
+                        <div class="product-card__footer">
+                            <span class="price">$296.000</span>
+                            <button class="btn btn--small" type="button" data-add-to-cart>Agregar al carrito</button>
+                        </div>
+                        <a class="product-card__link" href="producto-set-picnic.html">Ver detalles del producto</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container footer__top">
+            <div>
+                <a class="brand brand--footer" href="../index.html" aria-label="Volver al inicio de Northwind Colectivo">
+                    <span class="brand__logo" aria-hidden="true">
+                        <svg viewBox="0 0 72 72" role="img" aria-hidden="true" focusable="false">
+                            <defs>
+                                <linearGradient id="brandGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#f7c948" />
+                                    <stop offset="100%" stop-color="#2f7d5c" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="36" cy="36" r="32" fill="url(#brandGradientFooter)" />
+                            <circle cx="36" cy="36" r="26" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.85" />
+                            <path d="M36 16c5.3 5.1 9.6 13.6 9.6 20.7 0 7.1-4.3 11.6-9.6 11.6s-9.6-4.5-9.6-11.6C26.4 29.6 30.7 21.1 36 16z" fill="#ffffff" opacity="0.8" />
+                            <path d="M20 47c6.2-3.5 10.8-5.3 16-5.3s9.8 1.8 16 5.3l-5.6 9.4c-3.4-1.8-6.6-2.9-10.4-2.9s-7 1.1-10.4 2.9L20 47z" fill="#ffffff" opacity="0.9" />
+                            <circle cx="36" cy="32" r="4" fill="#2f7d5c" opacity="0.9" />
+                        </svg>
+                    </span>
+                    <span class="brand__wordmark">Northwind Colectivo</span>
+                </a>
+                <p>Curamos objetos cotidianos, bienestar y experiencias que cuentan historias colombianas.</p>
+            </div>
+            <div>
+                <h3>Comprar</h3>
+                <ul>
+                    <li><a href="nuevas-llegadas.html">Nuevas llegadas</a></li>
+                    <li><a href="mas-vendidos.html">Más vendidos</a></li>
+                    <li><a href="tarjetas-de-regalo.html">Tarjetas de regalo</a></li>
+                    <li><a href="ventas-por-mayor.html">Ventas al por mayor</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="centro-de-ayuda.html">Centro de ayuda</a></li>
+                    <li><a href="envios-y-devoluciones.html">Envíos y devoluciones</a></li>
+                    <li><a href="rastrea-tu-pedido.html">Rastrea tu pedido</a></li>
+                    <li><a href="regalos-corporativos.html">Regalos corporativos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Comunidad</h3>
+                <ul>
+                    <li><a href="revista.html">Revista</a></li>
+                    <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+                    <li><a href="nuestros-creadores.html">Nuestros creadores</a></li>
+                    <li><a href="afiliados.html">Afiliados</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer__legal">
+            <p>&copy; <span data-year></span> Northwind Colectivo. Todos los derechos reservados.</p>
+            <a href="politica-privacidad.html">Política de privacidad</a>
+            <a href="terminos-condiciones.html">Términos y condiciones</a>
+            <a href="accesibilidad.html">Accesibilidad</a>
+        </div>
+    </footer>
+    <script src="../script.js" defer></script>
+</body>
+</html>
