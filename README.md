@@ -1,4 +1,4 @@
-# Experiencia de Ecommerce Northwind Colectivo
+# Experiencia de Ecommerce La Botica
 
 Una landing page de ecommerce responsiva que muestra productos curados, artículos útiles y caminos claros para que las personas
 exploren colecciones o se suscriban a las novedades.

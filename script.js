@@ -527,7 +527,7 @@ function ensureSearchOverlay() {
     const title = document.createElement('h2');
     title.id = 'search-overlay-title';
     title.className = 'search-overlay__title';
-    title.textContent = 'Buscar en Northwind Colectivo';
+    title.textContent = 'Buscar en La Botica';
 
     const form = document.createElement('form');
     form.className = 'search-overlay__form';
@@ -845,8 +845,8 @@ galleries.forEach((gallery) => {
     updateSlide(0);
 });
 
-const CART_KEY = 'northwind.cart.v1';
-const CHECKOUT_KEY = 'northwind.checkout.v1';
+const CART_KEY = 'labotica.cart.v1';
+const CHECKOUT_KEY = 'labotica.checkout.v1';
 const cartCountElements = document.querySelectorAll('[data-cart-count]');
 const currencyFormatter = new Intl.NumberFormat('es-CO', {
     style: 'currency',
