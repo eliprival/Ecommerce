@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neon Apex F1</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hud">
+    <div class="brand">Neon Apex F1</div>
+    <div class="telemetry">
+      <div class="telemetry__item">
+        <span class="label">Speed</span>
+        <span id="speed-readout" class="value">0 km/h</span>
+      </div>
+      <div class="telemetry__item">
+        <span class="label">Lap</span>
+        <span id="lap-readout" class="value">0 / 3</span>
+      </div>
+      <div class="telemetry__item">
+        <span class="label">Best Lap</span>
+        <span id="best-lap-readout" class="value">--</span>
+      </div>
+      <div class="telemetry__item">
+        <span class="label">Last Lap</span>
+        <span id="last-lap-readout" class="value">--</span>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="track" width="1280" height="720"></canvas>
+
+  <div class="overlay" id="selection-overlay">
+    <div class="panel">
+      <h1>Choose your F1 dream team</h1>
+      <p class="intro">
+        Blend driver instinct with cutting-edge engineering. Configure your car, pick your pilot,
+        and dive into the neon-lit future of Formula racing.
+      </p>
+
+      <section class="selection" id="drivers">
+        <header>
+          <h2>Drivers</h2>
+          <p>Select the personality that matches your racing style.</p>
+        </header>
+        <div class="card-grid" id="driver-grid"></div>
+      </section>
+
+      <section class="selection" id="cars">
+        <header>
+          <h2>Cars</h2>
+          <p>Every chassis carries unique aero and power traits.</p>
+        </header>
+        <div class="card-grid" id="car-grid"></div>
+      </section>
+
+      <button id="start-button" disabled>Launch Race</button>
+    </div>
+  </div>
+
+  <div class="overlay" id="finish-overlay" hidden>
+    <div class="panel panel--small">
+      <h2>Race complete!</h2>
+      <p id="finish-summary"></p>
+      <button id="restart-button">Race Again</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
