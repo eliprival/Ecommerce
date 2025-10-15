@@ -15,6 +15,7 @@ exploren colecciones o se suscriban a las novedades.
 - Formulario de boletín, testimonios y mensajes enfocados en sostenibilidad.
 - Navegación a páginas dedicadas (colecciones, artículos, soporte, políticas y más) para ofrecer contexto ampliado sin alterar la landing principal.
 - Diseño totalmente responsivo con tipografía moderna y visuales suaves.
+- Paleta cromática renovada inspirada en tonos botánicos y artesanales.
 
 ## Cómo empezar
 
@@ -24,6 +25,19 @@ exploren colecciones o se suscriban a las novedades.
 4. Si prefieres no usar un servidor, también puedes abrir el archivo `index.html` directamente en el navegador.
 
 Personaliza la información de productos, imágenes y contenido editorial directamente en el marcado para que coincida con tu catálogo y tono de marca.
+
+## Paleta de colores
+
+La identidad visual de **La Botica** ahora se apoya en los siguientes tonos de referencia:
+
+- `#437C90` — Azul petróleo suave utilizado en enlaces y acentos secundarios.
+- `#2E5C57` — Verde profundo para titulares, botones principales y texto base.
+- `#EECB03` — Dorado vibrante para indicadores y estados destacados.
+- `#A68043` — Marrón miel que acompaña recuadros y fondos cálidos.
+- `#F7C648` — Amarillo suave en badges y llamadas de acción sutiles.
+- `#531B01` — Cacao tostado aplicado en fondos oscuros, overlays y el pie de página.
+
+Todos los estilos actualizados viven en `styles.css` y se gestionan mediante variables CSS para facilitar futuros ajustes.
 
 ## Páginas adicionales disponibles
 
