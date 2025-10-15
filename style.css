@@ -91,6 +91,11 @@ canvas {
   backdrop-filter: blur(6px);
 }
 
+.overlay[hidden] {
+  display: none !important;
+  pointer-events: none;
+}
+
 .panel {
   background: var(--panel-bg);
   border: 1px solid rgba(76, 248, 255, 0.32);
