@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
@@ -6,7 +6,7 @@
     <title>La Botica | Productos seleccionados para la vida cotidiana</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -15,15 +15,15 @@
             <span>Envíos GRATIS por ventas superiores a $200.000 en todo el país.</span>
         </div>
     </div>
- <!-- <header class="top-bar">
+ <header class="top-bar">
         <div class="container top-bar__inner">
             <a class="brand" href="index.html" aria-label="Volver al inicio de La Botica">
                 <span class="brand__logo" aria-hidden="true">
-                    <img src="assets/logo-la-botica.svg" alt="Logo circular de La Botica" decoding="async" />
+                    <img src="./assets/2.png" alt="Logo circular de La Botica" decoding="async" />
                 </span>
                 <span class="sr-only">La Botica</span>
             </a>
-            <button class="menu-toggle" aria-expanded="false" aria-controls="primary-navigation">
+                        <button class="menu-toggle" aria-expanded="false" aria-controls="primary-navigation">
                 <span class="sr-only">Alternar navegación</span>
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M3 6h18M3 12h18M3 18h18" />
@@ -48,7 +48,7 @@
                             <line x1="20" y1="20" x2="16.65" y2="16.65" />
                         </svg>
                     </button>
-                    <button class="icon-button" type="button">
+                    <!-- <button class="icon-button" type="button">
                         <span class="sr-only">Regístrate</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <circle cx="12" cy="7" r="4" />
@@ -56,8 +56,17 @@
                             <line x1="19" y1="16" x2="19" y2="22" />
                             <line x1="22" y1="19" x2="16" y2="19" />
                         </svg>
+                    </button> -->
+                    <button class="icon-button" type="button" data-open-register>
+                        <span class="sr-only">Crear cuenta</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Z" />
+                            <path d="M19 21v-2a5 5 0 0 0-5-5H6a5 5 0 0 0-5 5v2" />
+                            <path d="M19 10v6" />
+                            <path d="M16 13h6" />
+                        </svg>
                     </button>
-                    <button class="icon-button" type="button">
+                    <button class="icon-button" type="button" data-open-login>
                         <span class="sr-only">Iniciar sesión</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
@@ -77,8 +86,33 @@
                 </div>
             </div>
         </div>
-    </header> -->
-    
+    </header>
+
+    <section class="promo-slider" aria-label="Promociones destacadas">
+        <div class="promo-slider__viewport">
+            <div class="promo-slider__track">
+                <a class="promo-slide" href="pages/nuevas-llegadas.html">
+                    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1400&q=80" alt="Explora nuestras nuevas llegadas de bienestar" loading="lazy" />
+                </a>
+                <a class="promo-slide" href="pages/producto-elixir-radiante.html">
+                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1400&q=80" alt="Promo del Elixir Facial Radiante con 20% de descuento" loading="lazy" />
+                </a>
+                <a class="promo-slide" href="pages/coleccion-rituales.html">
+                    <img src="https://images.unsplash.com/photo-1522336572468-97b06e8ef143?auto=format&fit=crop&w=1400&q=80" alt="Colección Rituales para una vida consciente" loading="lazy" />
+                </a>
+                <a class="promo-slide" href="pages/ventas-por-mayor.html">
+                    <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1400&q=80" alt="Programa de ventas corporativas La Botica" loading="lazy" />
+                </a>
+            </div>
+        </div>
+        <div class="promo-slider__dots" role="tablist" aria-label="Selecciona promoción">
+            <button class="promo-slider__dot" type="button" aria-label="Ver promoción 1" aria-selected="true"></button>
+            <button class="promo-slider__dot" type="button" aria-label="Ver promoción 2"></button>
+            <button class="promo-slider__dot" type="button" aria-label="Ver promoción 3"></button>
+            <button class="promo-slider__dot" type="button" aria-label="Ver promoción 4"></button>
+        </div>
+</section>
+
 
     <main>
         <section class="hero">
@@ -365,7 +399,7 @@
             <div>
                 <a class="brand brand--footer" href="index.html" aria-label="Volver al inicio de La Botica">
                     <span class="brand__logo" aria-hidden="true">
-                    <img src="assets/logo-la-botica.svg" alt="Logo circular de La Botica" decoding="async" />
+                    <img src="./assets/2.png" alt="Logo circular de La Botica" decoding="async" />
                 </span>
                     <span class="brand__wordmark">La Botica</span>
                 </a>
@@ -424,6 +458,85 @@
         </div>
     </footer>
 
+    <div class="auth-modal" data-register-modal hidden>
+        <div class="auth-modal__panel" role="dialog" aria-modal="true" aria-labelledby="register-title">
+            <button class="auth-modal__close" type="button" data-close-modal>
+                <span class="sr-only">Cerrar</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+            <h2 id="register-title">Crear una cuenta</h2>
+            <p class="auth-modal__subtitle">Regístrate para recibir novedades y administrar tus pedidos.</p>
+            <form class="auth-form" data-register-form novalidate>
+                <label>
+                    <span>Nombre completo</span>
+                    <input type="text" name="name" autocomplete="name" required />
+                </label>
+                <label>
+                    <span>Correo electrónico</span>
+                    <input type="email" name="email" autocomplete="email" required />
+                </label>
+                <label>
+                    <span>Contraseña</span>
+                    <input type="password" name="password" autocomplete="new-password" minlength="6" required />
+                </label>
+                <label>
+                    <span>Confirmar contraseña</span>
+                    <input type="password" name="confirmPassword" autocomplete="new-password" minlength="6" required />
+                </label>
+                <button class="btn" type="submit">Crear cuenta</button>
+                <p class="auth-form__message" data-register-message role="status"></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="auth-modal" data-login-modal hidden>
+        <div class="auth-modal__panel" role="dialog" aria-modal="true" aria-labelledby="login-title">
+            <button class="auth-modal__close" type="button" data-close-modal>
+                <span class="sr-only">Cerrar</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+            <h2 id="login-title">Iniciar sesión</h2>
+            <p class="auth-modal__subtitle">Accede con tu correo y contraseña para continuar.</p>
+            <form class="auth-form" data-login-form novalidate>
+                <label>
+                    <span>Correo electrónico</span>
+                    <input type="email" name="email" autocomplete="email" required />
+                </label>
+                <label>
+                    <span>Contraseña</span>
+                    <input type="password" name="password" autocomplete="current-password" required />
+                </label>
+                <button class="btn" type="submit">Ingresar</button>
+                <p class="auth-form__message" data-login-message role="status"></p>
+            </form>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

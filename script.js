@@ -1,4 +1,4 @@
-const navToggle = document.querySelector('.menu-toggle');
+﻿const navToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#primary-navigation');
 const chips = document.querySelectorAll('.chip');
 const tags = document.querySelectorAll('.tag');
@@ -8,6 +8,18 @@ const searchButtons = document.querySelectorAll('[data-search-button]');
 const sortSelect = document.querySelector('#sort-products');
 const yearEls = document.querySelectorAll('[data-year]');
 const initialSearchParam = new URLSearchParams(window.location.search).get('search') || '';
+const topBar = document.querySelector('.top-bar');
+let registerModal = document.querySelector('[data-register-modal]');
+let loginModal = document.querySelector('[data-login-modal]');
+let openRegisterButtons = document.querySelectorAll('[data-open-register]');
+let openLoginButtons = document.querySelectorAll('[data-open-login]');
+let modalCloseButtons = document.querySelectorAll('[data-close-modal]');
+const MOBILE_SEARCH_INPUT_ID = 'mobile-site-search';
+let mobileSearchInput;
+let searchSuggestionOptions = [];
+let searchSuggestionLookup = new Map();
+let activeAuthModal = null;
+let lastModalTrigger = null;
 
 function normalizeText(text = '') {
     return text
@@ -202,6 +214,8 @@ productCards.forEach((card) => {
     }
 });
 
+buildSearchSuggestionIndex();
+
 const defaultSearchSuggestions = productCatalog
     .slice()
     .sort((a, b) => a.order - b.order)
@@ -229,6 +243,52 @@ function resolveProductUrl(url) {
     }
 
     return safePath(url);
+}
+
+function buildSearchSuggestionIndex() {
+    searchSuggestionOptions = [];
+    searchSuggestionLookup = new Map();
+
+    const seenValues = new Set();
+
+    productCatalog.forEach((product) => {
+        const url = resolveProductUrl(product.url);
+        const normalizedName = product.normalizedName || normalizeText(product.name);
+
+        if (normalizedName && !seenValues.has(normalizedName)) {
+            const entry = {
+                value: product.name,
+                normalizedValue: normalizedName,
+                url,
+                productId: product.id,
+            };
+
+            searchSuggestionOptions.push(entry);
+            searchSuggestionLookup.set(normalizedName, entry);
+            seenValues.add(normalizedName);
+        }
+
+        (product.keywords || []).forEach((keyword) => {
+            const normalizedKeyword = normalizeText(keyword);
+
+            if (!normalizedKeyword || seenValues.has(normalizedKeyword)) {
+                return;
+            }
+
+            const entry = {
+                value: keyword,
+                normalizedValue: normalizedKeyword,
+                url,
+                productId: product.id,
+            };
+
+            searchSuggestionOptions.push(entry);
+            searchSuggestionLookup.set(normalizedKeyword, entry);
+            seenValues.add(normalizedKeyword);
+        });
+    });
+
+    searchSuggestionOptions.sort((a, b) => a.value.localeCompare(b.value, 'es', { sensitivity: 'base' }));
 }
 
 function highlightMatch(text, query) {
@@ -496,6 +556,47 @@ function getIndexPath() {
     return window.location.pathname.includes('/pages/') ? '../index.html' : 'index.html';
 }
 
+function performGlobalSearch(rawQuery, { focusProductSearch = false, allowProductRedirect = true } = {}) {
+    const query = rawQuery.trim();
+
+    if (mobileSearchInput) {
+        mobileSearchInput.value = query;
+    }
+
+    if (allowProductRedirect && query) {
+        const suggestion = searchSuggestionLookup.get(normalizeText(query));
+
+        if (suggestion?.url && suggestion.url !== '#') {
+            window.location.href = suggestion.url;
+            return;
+        }
+    }
+
+    if (productSearch) {
+        productSearch.value = query;
+        filterProducts({
+            category: document.querySelector('.chip.is-active')?.dataset.filter || 'all',
+            search: query,
+        });
+
+        if (focusProductSearch) {
+            productSearch.focus();
+        }
+
+        return;
+    }
+
+    const destinationUrl = new URL(getIndexPath(), window.location.href);
+
+    if (query) {
+        destinationUrl.searchParams.set('search', query);
+    } else {
+        destinationUrl.search = '';
+    }
+
+    window.location.href = destinationUrl.toString();
+}
+
 function ensureSearchOverlay() {
     if (searchOverlayElements) {
         return searchOverlayElements;
@@ -587,29 +688,9 @@ function ensureSearchOverlay() {
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
-        const query = input.value.trim();
-
-        if (productSearch) {
-            productSearch.value = query;
-            closeSearchOverlay();
-            filterProducts({
-                category: document.querySelector('.chip.is-active')?.dataset.filter || 'all',
-                search: query,
-            });
-            productSearch.focus();
-            return;
-        }
-
-        const destinationUrl = new URL(getIndexPath(), window.location.href);
-
-        if (query) {
-            destinationUrl.searchParams.set('search', query);
-        } else {
-            destinationUrl.search = '';
-        }
-
+        const query = input.value;
         closeSearchOverlay();
-        window.location.href = destinationUrl.toString();
+        performGlobalSearch(query, { focusProductSearch: true });
     });
 
     input.addEventListener('input', () => {
@@ -666,6 +747,489 @@ function closeSearchOverlay() {
     }
 }
 
+function setupPromoSlider() {
+    const slider = document.querySelector('.promo-slider');
+    if (!slider) {
+        return;
+    }
+
+    const track = slider.querySelector('.promo-slider__track');
+    const slides = Array.from(slider.querySelectorAll('.promo-slide'));
+    const dots = Array.from(slider.querySelectorAll('.promo-slider__dot'));
+    if (!track || slides.length === 0 || dots.length === 0) {
+        return;
+    }
+
+    let currentIndex = 0;
+    let autoIntervalId = null;
+    const AUTO_INTERVAL_MS = 3000;
+
+    function updateDots(index) {
+        dots.forEach((dot, dotIndex) => {
+            dot.setAttribute('aria-selected', dotIndex === index ? 'true' : 'false');
+        });
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots(index);
+    }
+
+    function startAutoAdvance() {
+        stopAutoAdvance();
+        autoIntervalId = window.setInterval(() => {
+            const nextIndex = (currentIndex + 1) % slides.length;
+            goToSlide(nextIndex);
+        }, AUTO_INTERVAL_MS);
+    }
+
+    function stopAutoAdvance() {
+        if (autoIntervalId) {
+            window.clearInterval(autoIntervalId);
+            autoIntervalId = null;
+        }
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            goToSlide(index);
+            startAutoAdvance();
+        });
+    });
+
+    slider.addEventListener('mouseenter', stopAutoAdvance);
+    slider.addEventListener('mouseleave', startAutoAdvance);
+    slider.addEventListener('focusin', stopAutoAdvance);
+    slider.addEventListener('focusout', startAutoAdvance);
+
+    goToSlide(0);
+    startAutoAdvance();
+}
+
+function openAuthModal(modal, trigger) {
+    if (!modal) {
+        return;
+    }
+
+    activeAuthModal = modal;
+    lastModalTrigger = trigger || document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('has-open-modal');
+
+    const focusTarget = modal.querySelector('input, button, select, textarea');
+    focusTarget?.focus({ preventScroll: true });
+
+    const message = modal.querySelector('.auth-form__message');
+    if (message) {
+        setAuthFormMessage(message, '');
+    }
+}
+
+function closeActiveAuthModal() {
+    if (!activeAuthModal) {
+        return;
+    }
+
+    activeAuthModal.hidden = true;
+    document.body.classList.remove('has-open-modal');
+    if (lastModalTrigger instanceof HTMLElement) {
+        lastModalTrigger.focus({ preventScroll: true });
+    }
+    activeAuthModal = null;
+}
+
+function handleAuthModalKeydown(event) {
+    if (event.key === 'Escape' && activeAuthModal) {
+        event.preventDefault();
+        closeActiveAuthModal();
+    }
+}
+
+function setAuthFormMessage(element, message, type = 'info', { html = false } = {}) {
+    if (!element) {
+        return;
+    }
+
+    if (html) {
+        element.innerHTML = message;
+    } else {
+        element.textContent = message;
+    }
+    element.classList.remove('auth-form__message--success', 'auth-form__message--error');
+    if (type === 'success') {
+        element.classList.add('auth-form__message--success');
+    } else if (type === 'error') {
+        element.classList.add('auth-form__message--error');
+    }
+}
+
+function getStoredUser() {
+    try {
+        const raw = localStorage.getItem('labotica:user');
+        return raw ? JSON.parse(raw) : null;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+function setStoredUser(user) {
+    if (!user) {
+        localStorage.removeItem('labotica:user');
+    } else {
+        localStorage.setItem('labotica:user', JSON.stringify(user));
+    }
+    syncUserSession();
+}
+
+function syncUserSession() {
+    const user = getStoredUser();
+    if (user) {
+        document.body.classList.add('is-authenticated');
+        openLoginButtons.forEach((button) => {
+            const label = button.querySelector('.sr-only');
+            if (label) {
+                label.textContent = `Cuenta de ${user.name || user.email}`;
+            }
+        });
+    } else {
+        document.body.classList.remove('is-authenticated');
+        openLoginButtons.forEach((button) => {
+            const label = button.querySelector('.sr-only');
+            if (label) {
+                label.textContent = 'Iniciar sesión';
+            }
+        });
+    }
+}
+
+async function postJSON(url, payload) {
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+        const message = typeof data.message === 'string' ? data.message : 'Ocurrió un error. Inténtalo de nuevo.';
+        throw new Error(message);
+    }
+
+    return data;
+}
+
+function setupRegisterForm() {
+    if (!registerModal) {
+        return;
+    }
+
+    const form = registerModal.querySelector('[data-register-form]');
+    const messageEl = registerModal.querySelector('[data-register-message]');
+
+    if (!form) {
+        return;
+    }
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const name = formData.get('name')?.toString().trim() || '';
+        const email = formData.get('email')?.toString().trim().toLowerCase() || '';
+        const password = formData.get('password')?.toString() || '';
+        const confirmPassword = formData.get('confirmPassword')?.toString() || '';
+
+        if (!name || !email || !password) {
+            setAuthFormMessage(messageEl, 'Todos los campos son obligatorios.', 'error');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setAuthFormMessage(messageEl, 'Las contraseñas no coinciden.', 'error');
+            return;
+        }
+
+        try {
+            setAuthFormMessage(messageEl, 'Creando tu cuenta…');
+            const result = await postJSON('/api/register', { name, email, password });
+            const messageText = result.pendingEmail
+                ? `¡Bienvenido, ${name}! Hemos preparado un correo con este enlace de confirmación: <a href="${result.pendingEmail.confirmationLink}" target="_blank" rel="noopener">Confirmar correo</a>.`
+                : '¡Registro exitoso! Ahora puedes iniciar sesión.';
+            setAuthFormMessage(messageEl, messageText, 'success', { html: true });
+            form.reset();
+            window.setTimeout(() => {
+                closeActiveAuthModal();
+                openAuthModal(loginModal);
+            }, 1800);
+        } catch (error) {
+            setAuthFormMessage(messageEl, error.message, 'error');
+        }
+    });
+}
+
+function setupLoginForm() {
+    if (!loginModal) {
+        return;
+    }
+
+    const form = loginModal.querySelector('[data-login-form]');
+    const messageEl = loginModal.querySelector('[data-login-message]');
+
+    if (!form) {
+        return;
+    }
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const email = formData.get('email')?.toString().trim().toLowerCase() || '';
+        const password = formData.get('password')?.toString() || '';
+
+        if (!email || !password) {
+            setAuthFormMessage(messageEl, 'Ingresa tu correo y contraseña.', 'error');
+            return;
+        }
+
+        try {
+            setAuthFormMessage(messageEl, 'Validando credenciales…');
+            const result = await postJSON('/api/login', { email, password });
+            setAuthFormMessage(messageEl, `Hola ${result.user.name || result.user.email}, ¡bienvenido!`, 'success');
+            setStoredUser(result.user);
+            form.reset();
+            window.setTimeout(() => {
+                closeActiveAuthModal();
+            }, 1400);
+        } catch (error) {
+            setAuthFormMessage(messageEl, error.message, 'error');
+        }
+    });
+}
+
+function ensureAuthButtons() {
+    document.querySelectorAll('.action-icons').forEach((container) => {
+        const searchButton = container.querySelector('[data-search-button]');
+        let loginButton = container.querySelector('[data-open-login]');
+
+        if (!loginButton) {
+            loginButton = Array.from(container.querySelectorAll('.icon-button'))
+                .filter((button) => button !== searchButton && !button.classList.contains('icon-button--cart'))[0];
+
+            if (loginButton) {
+                loginButton.setAttribute('data-open-login', '');
+                const label = loginButton.querySelector('.sr-only');
+                if (label) {
+                    label.textContent = 'Iniciar sesión';
+                }
+            }
+        }
+
+        if (!container.querySelector('[data-open-register]')) {
+            const registerButton = document.createElement('button');
+            registerButton.type = 'button';
+            registerButton.className = 'icon-button';
+            registerButton.setAttribute('data-open-register', '');
+            registerButton.innerHTML = `
+                <span class="sr-only">Crear cuenta</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Z"></path>
+                    <path d="M19 21v-2a5 5 0 0 0-5-5H6a5 5 0 0 0-5 5v2"></path>
+                    <path d="M19 10v6"></path>
+                    <path d="M16 13h6"></path>
+                </svg>
+            `;
+
+            const insertBeforeNode = loginButton || container.querySelector('.icon-button--cart');
+            if (insertBeforeNode) {
+                container.insertBefore(registerButton, insertBeforeNode);
+            } else {
+                container.appendChild(registerButton);
+            }
+        }
+    });
+}
+
+function ensureAuthModalsInDOM() {
+    if (!document.querySelector('[data-register-modal]') || !document.querySelector('[data-login-modal]')) {
+        const template = `
+        <div class="auth-modal" data-register-modal hidden>
+            <div class="auth-modal__panel" role="dialog" aria-modal="true" aria-labelledby="register-title">
+                <button class="auth-modal__close" type="button" data-close-modal>
+                    <span class="sr-only">Cerrar</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+                <h2 id="register-title">Crear una cuenta</h2>
+                <p class="auth-modal__subtitle">Regístrate para recibir novedades y administrar tus pedidos.</p>
+                <form class="auth-form" data-register-form novalidate>
+                    <label>
+                        <span>Nombre completo</span>
+                        <input type="text" name="name" autocomplete="name" required />
+                    </label>
+                    <label>
+                        <span>Correo electrónico</span>
+                        <input type="email" name="email" autocomplete="email" required />
+                    </label>
+                    <label>
+                        <span>Contraseña</span>
+                        <input type="password" name="password" autocomplete="new-password" minlength="6" required />
+                    </label>
+                    <label>
+                        <span>Confirmar contraseña</span>
+                        <input type="password" name="confirmPassword" autocomplete="new-password" minlength="6" required />
+                    </label>
+                    <button class="btn" type="submit">Crear cuenta</button>
+                    <p class="auth-form__message" data-register-message role="status"></p>
+                </form>
+            </div>
+        </div>
+        <div class="auth-modal" data-login-modal hidden>
+            <div class="auth-modal__panel" role="dialog" aria-modal="true" aria-labelledby="login-title">
+                <button class="auth-modal__close" type="button" data-close-modal>
+                    <span class="sr-only">Cerrar</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+                <h2 id="login-title">Iniciar sesión</h2>
+                <p class="auth-modal__subtitle">Accede con tu correo y contraseña para continuar.</p>
+                <form class="auth-form" data-login-form novalidate>
+                    <label>
+                        <span>Correo electrónico</span>
+                        <input type="email" name="email" autocomplete="email" required />
+                    </label>
+                    <label>
+                        <span>Contraseña</span>
+                        <input type="password" name="password" autocomplete="current-password" required />
+                    </label>
+                    <button class="btn" type="submit">Ingresar</button>
+                    <p class="auth-form__message" data-login-message role="status"></p>
+                </form>
+            </div>
+        </div>`;
+
+        document.body.insertAdjacentHTML('beforeend', template);
+    }
+}
+
+function setupAuthModals() {
+    ensureAuthButtons();
+    ensureAuthModalsInDOM();
+
+    openRegisterButtons = document.querySelectorAll('[data-open-register]');
+    openLoginButtons = document.querySelectorAll('[data-open-login]');
+    modalCloseButtons = document.querySelectorAll('[data-close-modal]');
+    registerModal = document.querySelector('[data-register-modal]');
+    loginModal = document.querySelector('[data-login-modal]');
+
+    openRegisterButtons.forEach((button) => {
+        button.addEventListener('click', () => openAuthModal(registerModal, button));
+    });
+
+    openLoginButtons.forEach((button) => {
+        button.addEventListener('click', () => openAuthModal(loginModal, button));
+    });
+
+    modalCloseButtons.forEach((button) => {
+        button.addEventListener('click', () => closeActiveAuthModal());
+    });
+
+    [registerModal, loginModal].forEach((modal) => {
+        modal?.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeActiveAuthModal();
+            }
+        });
+    });
+
+    document.addEventListener('keydown', handleAuthModalKeydown);
+    setupRegisterForm();
+    setupLoginForm();
+    syncUserSession();
+}
+
+function setupMobileSearch() {
+    if (!topBar || topBar.querySelector('[data-mobile-search]')) {
+        return;
+    }
+
+    if (searchSuggestionOptions.length === 0) {
+        buildSearchSuggestionIndex();
+    }
+
+    const form = document.createElement('form');
+    form.className = 'top-bar__search container';
+    form.setAttribute('role', 'search');
+    form.setAttribute('data-mobile-search', '');
+
+    const label = document.createElement('label');
+    label.className = 'sr-only';
+    label.setAttribute('for', MOBILE_SEARCH_INPUT_ID);
+    label.textContent = 'Buscar en La Botica';
+
+    const field = document.createElement('div');
+    field.className = 'top-bar__search-field';
+
+    const input = document.createElement('input');
+    input.type = 'search';
+    input.id = MOBILE_SEARCH_INPUT_ID;
+    input.name = 'search';
+    input.placeholder = '¿Qué estás buscando?';
+    input.autocomplete = 'off';
+    input.value = productSearch?.value || initialSearchParam || '';
+
+    const datalistId = `${MOBILE_SEARCH_INPUT_ID}-sugerencias`;
+    let dataList = document.getElementById(datalistId);
+
+    if (!dataList) {
+        dataList = document.createElement('datalist');
+        dataList.id = datalistId;
+    } else {
+        dataList.innerHTML = '';
+    }
+
+    searchSuggestionOptions.forEach((suggestion) => {
+        const option = document.createElement('option');
+        option.value = suggestion.value;
+        dataList.append(option);
+    });
+
+    input.setAttribute('list', datalistId);
+
+    const button = document.createElement('button');
+    button.type = 'submit';
+    button.className = 'top-bar__search-button';
+    button.setAttribute('aria-label', 'Buscar');
+    button.innerHTML = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="20" y1="20" x2="16.65" y2="16.65"></line>
+        </svg>
+        <span class="sr-only">Buscar</span>
+    `;
+
+    field.append(input, button);
+    form.append(label, field, dataList);
+    topBar.append(form);
+
+    mobileSearchInput = input;
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        performGlobalSearch(input.value);
+    });
+
+    input.addEventListener('search', () => {
+        performGlobalSearch(input.value);
+    });
+}
+
 if (searchButtons.length > 0) {
     searchButtons.forEach((button) => {
         button.addEventListener('click', (event) => {
@@ -674,6 +1238,10 @@ if (searchButtons.length > 0) {
         });
     });
 }
+
+setupAuthModals();
+setupMobileSearch();
+setupPromoSlider();
 
 function sortProducts(criteria) {
     const grid = document.querySelector('#product-grid');
@@ -1310,4 +1878,7 @@ renderCartPage();
 renderCheckoutPage();
 renderConfirmationPage();
 updateCartCount();
+
+
+
 
