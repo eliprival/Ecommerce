@@ -6,7 +6,8 @@
     <title>La Botica | Productos seleccionados para la vida cotidiana</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -41,31 +42,7 @@
             <div class="actions">
                 <a class="btn btn--pill" href="pages/centro-de-ayuda.html">Contáctanos</a>
                 <div class="action-icons" role="group" aria-label="Acciones de cuenta y carrito">
-                    <button class="icon-button" type="button" data-search-button>
-                        <span class="sr-only">Buscar</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <circle cx="11" cy="11" r="7" />
-                            <line x1="20" y1="20" x2="16.65" y2="16.65" />
-                        </svg>
-                    </button>
-                    <!-- <button class="icon-button" type="button">
-                        <span class="sr-only">Regístrate</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <circle cx="12" cy="7" r="4" />
-                            <path d="M5 21v-1a7 7 0 0 1 7-7h0" />
-                            <line x1="19" y1="16" x2="19" y2="22" />
-                            <line x1="22" y1="19" x2="16" y2="19" />
-                        </svg>
-                    </button> -->
-                    <button class="icon-button" type="button" data-open-register>
-                        <span class="sr-only">Crear cuenta</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Z" />
-                            <path d="M19 21v-2a5 5 0 0 0-5-5H6a5 5 0 0 0-5 5v2" />
-                            <path d="M19 10v6" />
-                            <path d="M16 13h6" />
-                        </svg>
-                    </button>
+                    <span class="user-greeting" data-user-greeting hidden></span>
                     <button class="icon-button" type="button" data-open-login>
                         <span class="sr-only">Iniciar sesión</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -83,6 +60,13 @@
                         </svg>
                         <span class="icon-button__badge" data-cart-count>0</span>
                     </a>
+                    <button class="icon-button" type="button" data-search-button>
+                        <span class="sr-only">Buscar</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7" />
+                            <line x1="20" y1="20" x2="16.65" y2="16.65" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -162,7 +146,7 @@
                 <article class="collection-card">
                     <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=800&q=80" alt="Juego de té y taza de cerámica" />
                     <div class="collection-card__body">
-                        <h3>Rituales de la mañana</h3>
+                        <h3>Kit para mama</h3>
                         <p>Empieza tu día con tés funcionales, kits de goteo y cerámicas para el desayuno.</p>
                         <a class="link" href="pages/coleccion-rituales.html">Comprar esta colección</a>
                     </div>
@@ -515,6 +499,32 @@
                 <button class="btn" type="submit">Ingresar</button>
                 <p class="auth-form__message" data-login-message role="status"></p>
             </form>
+            <p class="auth-form__alt">¿Primera vez aquí? <button type="button" class="auth-form__link" data-open-register>Crear cuenta</button></p>
+        </div>
+    </div>
+
+    <div class="welcome-modal" data-welcome-modal hidden>
+        <div class="welcome-modal__panel" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+            <button class="welcome-modal__close" type="button" data-welcome-close>
+                <span class="sr-only">Cerrar</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="welcome-modal__content">
+                <h2 id="welcome-title">Recibe 5% off</h2>
+                <p class="welcome-modal__subtitle">Deja tu correo y recibe un codigo exclusivo para tu primera compra.</p>
+                <form class="welcome-form" data-welcome-form novalidate>
+                    <label>
+                        <span>Correo electrónico</span>
+                        <input type="email" name="email" placeholder="tu@correo.com" autocomplete="email" required />
+                    </label>
+                    <button class="btn welcome-form__submit" type="submit">Obtener mi 5% off</button>
+                    <p class="welcome-form__message" data-welcome-message role="status"></p>
+                </form>
+                <button class="welcome-modal__dismiss" type="button" data-welcome-dismiss>No gracias, prefiero perderlo</button>
+            </div>
         </div>
     </div>
 

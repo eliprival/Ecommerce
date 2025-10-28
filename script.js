@@ -20,6 +20,8 @@ let searchSuggestionOptions = [];
 let searchSuggestionLookup = new Map();
 let activeAuthModal = null;
 let lastModalTrigger = null;
+const welcomeModal = document.querySelector('[data-welcome-modal]');
+const WELCOME_DISMISS_KEY = 'labotica:welcomeDiscountDismissed:v2';
 
 function normalizeText(text = '') {
     return text
@@ -812,6 +814,8 @@ function openAuthModal(modal, trigger) {
         return;
     }
 
+    closeWelcomeModal(false);
+
     activeAuthModal = modal;
     lastModalTrigger = trigger || document.activeElement;
     modal.hidden = false;
@@ -832,7 +836,9 @@ function closeActiveAuthModal() {
     }
 
     activeAuthModal.hidden = true;
-    document.body.classList.remove('has-open-modal');
+    if (!welcomeModal || welcomeModal.hidden) {
+        document.body.classList.remove('has-open-modal');
+    }
     if (lastModalTrigger instanceof HTMLElement) {
         lastModalTrigger.focus({ preventScroll: true });
     }
@@ -885,23 +891,56 @@ function setStoredUser(user) {
 
 function syncUserSession() {
     const user = getStoredUser();
+    const greetingElements = document.querySelectorAll('[data-user-greeting]');
+
     if (user) {
         document.body.classList.add('is-authenticated');
+        const nameSource = (user.name || user.email || '').trim();
+        const firstName = nameSource.split(' ')[0] || 'Usuario';
+
         openLoginButtons.forEach((button) => {
             const label = button.querySelector('.sr-only');
             if (label) {
                 label.textContent = `Cuenta de ${user.name || user.email}`;
             }
+            const tooltipText = user.name ? `Cuenta de ${user.name}` : 'Mi cuenta';
+            button.dataset.tooltip = tooltipText;
+        });
+
+        greetingElements.forEach((element) => {
+            element.textContent = `Hola, ${firstName}`;
+            element.hidden = false;
+        });
+
+        openRegisterButtons.forEach((button) => {
+            button.hidden = true;
+            button.setAttribute('aria-hidden', 'true');
+            button.tabIndex = -1;
         });
     } else {
         document.body.classList.remove('is-authenticated');
+
         openLoginButtons.forEach((button) => {
             const label = button.querySelector('.sr-only');
             if (label) {
-                label.textContent = 'Iniciar sesión';
+                label.textContent = 'Iniciar sesion';
             }
+            button.dataset.tooltip = 'Iniciar sesion';
+        });
+
+        greetingElements.forEach((element) => {
+            element.textContent = '';
+            element.hidden = true;
+        });
+
+        openRegisterButtons.forEach((button) => {
+            button.hidden = false;
+            button.removeAttribute('aria-hidden');
+            button.tabIndex = 0;
         });
     }
+
+    applyIconTooltips();
 }
 
 async function postJSON(url, payload) {
@@ -1014,6 +1053,14 @@ function ensureAuthButtons() {
         const searchButton = container.querySelector('[data-search-button]');
         let loginButton = container.querySelector('[data-open-login]');
 
+        if (!container.querySelector('[data-user-greeting]')) {
+            const greeting = document.createElement('span');
+            greeting.className = 'user-greeting';
+            greeting.setAttribute('data-user-greeting', '');
+            greeting.hidden = true;
+            container.prepend(greeting);
+        }
+
         if (!loginButton) {
             loginButton = Array.from(container.querySelectorAll('.icon-button'))
                 .filter((button) => button !== searchButton && !button.classList.contains('icon-button--cart'))[0];
@@ -1022,34 +1069,13 @@ function ensureAuthButtons() {
                 loginButton.setAttribute('data-open-login', '');
                 const label = loginButton.querySelector('.sr-only');
                 if (label) {
-                    label.textContent = 'Iniciar sesión';
+                    label.textContent = 'Iniciar sesion';
                 }
             }
         }
 
-        if (!container.querySelector('[data-open-register]')) {
-            const registerButton = document.createElement('button');
-            registerButton.type = 'button';
-            registerButton.className = 'icon-button';
-            registerButton.setAttribute('data-open-register', '');
-            registerButton.innerHTML = `
-                <span class="sr-only">Crear cuenta</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Z"></path>
-                    <path d="M19 21v-2a5 5 0 0 0-5-5H6a5 5 0 0 0-5 5v2"></path>
-                    <path d="M19 10v6"></path>
-                    <path d="M16 13h6"></path>
-                </svg>
-            `;
-
-            const insertBeforeNode = loginButton || container.querySelector('.icon-button--cart');
-            if (insertBeforeNode) {
-                container.insertBefore(registerButton, insertBeforeNode);
-            } else {
-                container.appendChild(registerButton);
-            }
-        }
     });
+    applyIconTooltips();
 }
 
 function ensureAuthModalsInDOM() {
@@ -1118,6 +1144,78 @@ function ensureAuthModalsInDOM() {
     }
 }
 
+function applyIconTooltips() {
+    if (navToggle) {
+        navToggle.dataset.tooltip = 'Menu';
+    }
+
+    document.querySelectorAll('[data-search-button]').forEach((button) => {
+        button.dataset.tooltip = 'Buscar';
+    });
+
+    document.querySelectorAll('[data-open-register]').forEach((button) => {
+        button.dataset.tooltip = 'Crear cuenta';
+    });
+
+    document.querySelectorAll('[data-open-login]').forEach((button) => {
+        if (!button.dataset.tooltip) {
+            button.dataset.tooltip = 'Iniciar sesion';
+        }
+    });
+
+    document.querySelectorAll('.icon-button--cart').forEach((button) => {
+        button.dataset.tooltip = 'Ver carrito';
+    });
+
+    document.querySelectorAll('.social a[aria-label]').forEach((link) => {
+        link.dataset.tooltip = link.getAttribute('aria-label');
+    });
+}
+
+function setWelcomeMessage(element, message, type = 'info') {
+    if (!element) {
+        return;
+    }
+
+    element.textContent = message;
+    element.classList.remove('success', 'error');
+    if (type === 'success') {
+        element.classList.add('success');
+    } else if (type === 'error') {
+        element.classList.add('error');
+    }
+}
+
+function openWelcomeModal() {
+    if (!welcomeModal || !welcomeModal.hidden || localStorage.getItem(WELCOME_DISMISS_KEY)) {
+        return;
+    }
+
+    welcomeModal.hidden = false;
+    document.body.classList.add('has-open-modal');
+
+    const messageEl = welcomeModal.querySelector('[data-welcome-message]');
+    setWelcomeMessage(messageEl, '');
+
+    const input = welcomeModal.querySelector('input[name="email"]');
+    window.setTimeout(() => input?.focus({ preventScroll: true }), 80);
+}
+
+function closeWelcomeModal(markDismissed = false) {
+    if (!welcomeModal || welcomeModal.hidden) {
+        return;
+    }
+
+    welcomeModal.hidden = true;
+    if (!activeAuthModal) {
+        document.body.classList.remove('has-open-modal');
+    }
+
+    if (markDismissed) {
+        localStorage.setItem(WELCOME_DISMISS_KEY, 'true');
+    }
+}
+
 function setupAuthModals() {
     ensureAuthButtons();
     ensureAuthModalsInDOM();
@@ -1152,6 +1250,71 @@ function setupAuthModals() {
     setupRegisterForm();
     setupLoginForm();
     syncUserSession();
+    applyIconTooltips();
+}
+
+function setupWelcomeModal() {
+    if (!welcomeModal) {
+        return;
+    }
+
+    const form = welcomeModal.querySelector('[data-welcome-form]');
+    const messageEl = welcomeModal.querySelector('[data-welcome-message]');
+    const closeButtons = welcomeModal.querySelectorAll('[data-welcome-close]');
+    const dismissButton = welcomeModal.querySelector('[data-welcome-dismiss]');
+
+    const shouldShow = !localStorage.getItem(WELCOME_DISMISS_KEY);
+    if (shouldShow) {
+        window.setTimeout(() => openWelcomeModal(), 1400);
+    }
+
+    closeButtons.forEach((button) => {
+        button.addEventListener('click', () => closeWelcomeModal(true));
+    });
+
+    dismissButton?.addEventListener('click', (event) => {
+        event.preventDefault();
+        closeWelcomeModal(true);
+    });
+
+    welcomeModal.addEventListener('click', (event) => {
+        if (event.target === welcomeModal) {
+            closeWelcomeModal(true);
+        }
+    });
+
+    form?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const emailInput = form.querySelector('input[name=\"email\"]');
+        const submitButton = form.querySelector('button[type=\"submit\"]');
+        const email = emailInput?.value.trim().toLowerCase() || '';
+
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            setWelcomeMessage(messageEl, 'Ingresa un correo valido.', 'error');
+            return;
+        }
+
+        try {
+            if (submitButton) {
+                submitButton.disabled = true;
+            }
+            setWelcomeMessage(messageEl, 'Enviando tu codigo...');
+            const result = await postJSON('/api/newsletter', { email });
+            const codeMessage = result.code
+                ? 'Tu codigo es ' + result.code + '. Revisa tambien tu correo.'
+                : 'Listo, revisa tu correo para obtener el codigo.';
+            setWelcomeMessage(messageEl, codeMessage, 'success');
+            localStorage.setItem(WELCOME_DISMISS_KEY, 'true');
+            form.reset();
+            window.setTimeout(() => closeWelcomeModal(true), 2500);
+        } catch (error) {
+            setWelcomeMessage(messageEl, error.message || 'No pudimos guardar tu correo.', 'error');
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+            }
+        }
+    });
 }
 
 function setupMobileSearch() {
@@ -1240,6 +1403,7 @@ if (searchButtons.length > 0) {
 }
 
 setupAuthModals();
+setupWelcomeModal();
 setupMobileSearch();
 setupPromoSlider();
 
@@ -1878,6 +2042,20 @@ renderCartPage();
 renderCheckoutPage();
 renderConfirmationPage();
 updateCartCount();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

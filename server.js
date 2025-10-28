@@ -8,6 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_DIR = path.join(__dirname, 'data');
 const USERS_FILE = path.join(DATA_DIR, 'users.json');
+const LEADS_FILE = path.join(DATA_DIR, 'leads.json');
 const STATIC_DIR = __dirname;
 
 app.use(express.json());
@@ -19,6 +20,15 @@ async function ensureUsersFile() {
     } catch (error) {
         await fs.mkdir(DATA_DIR, { recursive: true });
         await fs.writeFile(USERS_FILE, '[]', 'utf8');
+    }
+}
+
+async function ensureLeadsFile() {
+    try {
+        await fs.access(LEADS_FILE);
+    } catch (error) {
+        await fs.mkdir(DATA_DIR, { recursive: true });
+        await fs.writeFile(LEADS_FILE, '[]', 'utf8');
     }
 }
 
@@ -35,6 +45,21 @@ async function readUsers() {
 
 async function writeUsers(users) {
     await fs.writeFile(USERS_FILE, JSON.stringify(users, null, 4), 'utf8');
+}
+
+async function readLeads() {
+    await ensureLeadsFile();
+    const raw = await fs.readFile(LEADS_FILE, 'utf8');
+    try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+        return [];
+    }
+}
+
+async function writeLeads(leads) {
+    await fs.writeFile(LEADS_FILE, JSON.stringify(leads, null, 4), 'utf8');
 }
 
 app.post('/api/register', async (req, res) => {
@@ -134,6 +159,58 @@ app.post('/api/login', async (req, res) => {
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'No pudimos validar tus credenciales. Intenta más tarde.' });
+    }
+});
+
+app.post('/api/newsletter', async (req, res) => {
+    const { email } = req.body || {};
+
+    if (!email) {
+        return res.status(400).json({ message: 'El correo es obligatorio.' });
+    }
+
+    const normalizedEmail = String(email).trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
+        return res.status(400).json({ message: 'Ingresa un correo válido.' });
+    }
+
+    try {
+        const leads = await readLeads();
+        let lead = leads.find((entry) => entry.email === normalizedEmail);
+        let discountCode = lead?.discountCode;
+
+        if (!lead) {
+            discountCode = `BOTICA5-${crypto.randomBytes(3).toString('hex').toUpperCase()}`;
+            lead = {
+                id: typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : crypto.randomBytes(16).toString('hex'),
+                email: normalizedEmail,
+                discountCode,
+                subscribedAt: new Date().toISOString(),
+            };
+            leads.push(lead);
+        } else {
+            lead.lastRequestedAt = new Date().toISOString();
+            if (!lead.discountCode) {
+                discountCode = `BOTICA5-${crypto.randomBytes(3).toString('hex').toUpperCase()}`;
+                lead.discountCode = discountCode;
+            }
+        }
+
+        await writeLeads(leads);
+
+        return res.json({
+            success: true,
+            code: discountCode,
+            message: '¡Gracias por unirte! Enviamos tu código a tu correo.',
+            pendingEmail: {
+                subject: 'Tu código exclusivo de La Botica',
+                body: `Gracias por unirte a nuestras novedades. Usa el código ${discountCode} para obtener 5% de descuento en tu primera compra.`,
+                discountCode,
+            },
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'No pudimos guardar tu correo. Intenta más tarde.' });
     }
 });
 
