@@ -1269,7 +1269,10 @@ function setupWelcomeModal() {
     }
 
     closeButtons.forEach((button) => {
-        button.addEventListener('click', () => closeWelcomeModal(true));
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            closeWelcomeModal(true);
+        });
     });
 
     dismissButton?.addEventListener('click', (event) => {
@@ -1278,6 +1281,12 @@ function setupWelcomeModal() {
     });
 
     welcomeModal.addEventListener('click', (event) => {
+        if (event.target.closest('[data-welcome-close]')) {
+            event.preventDefault();
+            closeWelcomeModal(true);
+            return;
+        }
+
         if (event.target === welcomeModal) {
             closeWelcomeModal(true);
         }
