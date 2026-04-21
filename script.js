@@ -1216,6 +1216,19 @@ function closeWelcomeModal(markDismissed = false) {
     }
 }
 
+document.addEventListener('click', (event) => {
+    if (!welcomeModal || welcomeModal.hidden) {
+        return;
+    }
+
+    if (!event.target.closest('[data-welcome-close]')) {
+        return;
+    }
+
+    event.preventDefault();
+    closeWelcomeModal(true);
+});
+
 function setupAuthModals() {
     ensureAuthButtons();
     ensureAuthModalsInDOM();
@@ -1281,12 +1294,6 @@ function setupWelcomeModal() {
     });
 
     welcomeModal.addEventListener('click', (event) => {
-        if (event.target.closest('[data-welcome-close]')) {
-            event.preventDefault();
-            closeWelcomeModal(true);
-            return;
-        }
-
         if (event.target === welcomeModal) {
             closeWelcomeModal(true);
         }
