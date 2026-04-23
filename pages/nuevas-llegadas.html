@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuevas llegadas | La Botica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div class="announcement-bar" role="status">
+        <div class="container announcement-bar__inner">
+            <span>Envíos GRATIS por ventas superiores a $200.000 en todo el país.</span>
+        </div>
+    </div>
+    <header class="top-bar">
+        <div class="container top-bar__inner">
+            <a class="brand" href="../index.html" aria-label="Volver al inicio de La Botica">
+                <span class="brand__logo" aria-hidden="true">
+                    <img src="../assets/2.png" alt="Logo circular de La Botica" decoding="async" />
+                </span>
+                <span class="sr-only">La Botica</span>
+            </a>
+                        <button class="menu-toggle" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="sr-only">Alternar navegación</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 6h18M3 12h18M3 18h18" />
+                </svg>
+            </button>
+            <nav id="primary-navigation" class="nav" aria-label="Navegación principal">
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="colecciones.html" aria-current="page">Colecciones</a></li>
+                    <li><a href="mas-vendidos.html">Más vendidos</a></li>
+                    <li><a href="todos-los-productos.html">Todos los productos</a></li>
+                    <li><a href="revista.html">Revista</a></li>
+                </ul>
+            </nav>
+            <div class="actions">
+                <a class="btn btn--pill" href="centro-de-ayuda.html">Contáctanos</a>
+                <div class="action-icons" role="group" aria-label="Acciones de cuenta y carrito">
+    <button class="icon-button" type="button" data-search-button>
+        <span class="sr-only">Buscar</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <line x1="20" y1="20" x2="16.65" y2="16.65" />
+        </svg>
+    </button>
+    <!-- <button class="icon-button" type="button">
+        <span class="sr-only">Regístrate</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="7" r="4" />
+            <path d="M5 21v-1a7 7 0 0 1 7-7h0" />
+            <line x1="19" y1="16" x2="19" y2="22" />
+            <line x1="22" y1="19" x2="16" y2="19" />
+        </svg>
+    </button> -->
+    <button class="icon-button" type="button">
+        <span class="sr-only">Iniciar sesión</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+            <polyline points="10 17 15 12 10 7" />
+            <line x1="15" y1="12" x2="3" y2="12" />
+        </svg>
+    </button>
+    <a class="icon-button icon-button--cart" href="carrito.html">
+        <span class="sr-only">Abrir carrito</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="19" cy="21" r="1" />
+            <path d="M2 3h3l2.4 12.34A2 2 0 0 0 9.36 17h9.28a2 2 0 0 0 1.96-1.66L22 7H6" />
+        </svg>
+        <span class="icon-button__badge" data-cart-count>0</span>
+    </a>
+</div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="simple-page">
+            <div class="container simple-page__header">
+                <a class="back-link" href="../index.html#collections">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <polyline points="15 6 9 12 15 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <line x1="9" y1="12" x2="21" y2="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Volver a destacados
+                </a>
+                <p class="eyebrow">Novedades</p>
+                <h1>Nuevas llegadas seleccionadas cada semana</h1>
+                <p class="lead">Encuentra lanzamientos recién salidos del taller, ediciones limitadas y colaboraciones exclusivas disponibles por tiempo limitado.</p>
+                <div class="simple-page__actions">
+                    <a class="btn" href="todos-los-productos.html">Ver catálogo</a>
+                    <a class="btn btn--ghost" href="boletin.html">Recibir alertas</a>
+                </div>
+            </div>
+            <div class="container simple-page__content">
+                <article class="simple-card highlight-card">
+                    <span class="simple-card__eyebrow">Esta semana</span>
+                    <h2>Colaboración La Botica x Taller Sol</h2>
+                    <p>Piezas de cerámica esmaltadas en tonos terracota con patrones inspirados en jardines tropicales.</p>
+                    <ul class="simple-card__list">
+                        <li>Stock limitado a 120 unidades</li>
+                        <li>Incluye certificado de autenticidad</li>
+                        <li>Entrega en Bogotá y Medellín en 48 horas</li>
+                    </ul>
+                    <div class="simple-card__actions">
+                        <a class="btn" href="coleccion-rituales.html">Ver colección</a>
+                        <a class="btn btn--ghost" href="revista.html">Leer entrevista</a>
+                    </div>
+                </article>
+                <article class="simple-card">
+                    <span class="simple-card__eyebrow">Próximamente</span>
+                    <h2>Set de camping modular</h2>
+                    <p>Equipo compacto diseñado con Exploradores del Tayrona para salidas de fin de semana, elaborado en aluminio anodizado.</p>
+                    <ul class="simple-card__list">
+                        <li>Preventa abierta con 15% de descuento</li>
+                        <li>Entrega estimada: 15 de julio</li>
+                        <li>Incluye sesión virtual con los diseñadores</li>
+                    </ul>
+                    <div class="simple-card__actions">
+                        <a class="btn" href="coleccion-aventura.html">Reservar ahora</a>
+                        <a class="btn btn--ghost" href="boletin.html">Recibir recordatorio</a>
+                    </div>
+                </article>
+                <article class="simple-card">
+                    <span class="simple-card__eyebrow">Edición limitada</span>
+                    <h2>Velas botánicas "Bosque Alto"</h2>
+                    <p>Fragancias inspiradas en el páramo de Sumapaz con notas de pino, eucalipto y jazmín.</p>
+                    <ul class="simple-card__list">
+                        <li>Cera de soya y mecha de algodón colombiano</li>
+                        <li>Incluye playlist exclusiva en Spotify</li>
+                        <li>Por cada vela se siembra un árbol nativo</li>
+                    </ul>
+                    <div class="simple-card__actions">
+                        <a class="btn" href="mas-vendidos.html">Añadir al carrito</a>
+                        <a class="btn btn--ghost" href="boletin.html">Avisarme reposición</a>
+                    </div>
+                </article>
+            </div>
+            <div class="container simple-page__cta">
+                <h2>Accede a lanzamientos antes que todos</h2>
+                <p>Únete a la lista de espera para recibir códigos exclusivos, sesiones con creadores y acceso prioritario a drops.</p>
+                <a class="btn" href="boletin.html">Unirme a la lista</a>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer__top">
+            <div>
+                <a class="brand brand--footer" href="../index.html" aria-label="Volver al inicio de La Botica">
+                    <span class="brand__logo" aria-hidden="true">
+                    <img src="../assets/2.png" alt="Logo circular de La Botica" decoding="async" />
+                </span>
+                    <span class="brand__wordmark">La Botica</span>
+                </a>
+                <p>Curamos objetos cotidianos, bienestar y experiencias que cuentan historias colombianas.</p>
+            </div>
+            <div>
+                <h3>Comprar</h3>
+                <ul>
+                    <li><a href="nuevas-llegadas.html">Nuevas llegadas</a></li>
+                    <li><a href="mas-vendidos.html">Más vendidos</a></li>
+                    <li><a href="tarjetas-de-regalo.html">Tarjetas de regalo</a></li>
+                    <li><a href="ventas-por-mayor.html">Ventas al por mayor</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="centro-de-ayuda.html">Centro de ayuda</a></li>
+                    <li><a href="envios-y-devoluciones.html">Envíos y devoluciones</a></li>
+                    <li><a href="rastrea-tu-pedido.html">Rastrea tu pedido</a></li>
+                    <li><a href="regalos-corporativos.html">Regalos corporativos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Comunidad</h3>
+                <ul>
+                    <li><a href="revista.html">Revista</a></li>
+                    <li><a href="sostenibilidad.html">Sostenibilidad</a></li>
+                    <li><a href="nuestros-creadores.html">Nuestros creadores</a></li>
+                    <li><a href="afiliados.html">Afiliados</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer__legal">
+            <p>&copy; <span data-year></span> La Botica. Todos los derechos reservados.</p>
+            <a href="politica-privacidad.html">Política de privacidad</a>
+            <a href="terminos-condiciones.html">Términos y condiciones</a>
+            <a href="accesibilidad.html">Accesibilidad</a>
+        </div>
+    </footer>
+    <script src="../script.js" defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

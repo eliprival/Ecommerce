@@ -1,0 +1,985 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Botica | Productos para cuidar tu salud</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="announcement-bar" role="status">
+      <div class="container announcement-bar__inner">
+        <span
+          >Envíos GRATIS por compras superiores a $200.000 en todo el
+          país.</span
+        >
+      </div>
+    </div>
+    <header class="top-bar">
+      <div class="container top-bar__inner">
+        <a
+          class="brand"
+          href="index.html"
+          aria-label="Volver al inicio de La Botica"
+        >
+          <span class="brand__logo" aria-hidden="true">
+            <img
+              src="./assets/LOGO LA BOTICA VECTORIZADO (Sin Fondo)_Mesa de trabajo 1.png"
+              alt="Logo circular de La Botica"
+              decoding="async"
+            />
+          </span>
+          <span class="sr-only">La Botica</span>
+        </a>
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <span class="sr-only">Alternar navegación</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+        </button>
+        <nav
+          id="primary-navigation"
+          class="nav"
+          aria-label="Navegación principal"
+        >
+          <ul>
+            <li><a href="index.html" aria-current="page">Inicio</a></li>
+            <li><a href="pages/colecciones.html">Kits</a></li>
+            <li><a href="pages/mas-vendidos.html">Más vendidos</a></li>
+            <li>
+              <a href="pages/todos-los-productos.html">Todos los productos</a>
+            </li>
+            <li><a href="pages/revista.html">Revista</a></li>
+          </ul>
+        </nav>
+        <div class="actions">
+          <a class="btn btn--pill" href="pages/centro-de-ayuda.html"
+            >Contáctanos</a
+          >
+          <div
+            class="action-icons"
+            role="group"
+            aria-label="Acciones de cuenta y carrito"
+          >
+            <span class="user-greeting" data-user-greeting hidden></span>
+            <button class="icon-button" type="button" data-open-login>
+              <span class="sr-only">Iniciar sesión</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" y1="12" x2="3" y2="12" />
+              </svg>
+            </button>
+            <a class="icon-button icon-button--cart" href="pages/carrito.html">
+              <span class="sr-only">Abrir carrito</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="9" cy="21" r="1" />
+                <circle cx="19" cy="21" r="1" />
+                <path
+                  d="M2 3h3l2.4 12.34A2 2 0 0 0 9.36 17h9.28a2 2 0 0 0 1.96-1.66L22 7H6"
+                />
+              </svg>
+              <span class="icon-button__badge" data-cart-count>0</span>
+            </a>
+            <button class="icon-button" type="button" data-search-button>
+              <span class="sr-only">Buscar</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <line x1="20" y1="20" x2="16.65" y2="16.65" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="promo-slider" aria-label="Promociones destacadas">
+      <div class="promo-slider__viewport">
+        <div class="promo-slider__track">
+          <a class="promo-slide" href="pages/nuevas-llegadas.html">
+            <img
+              src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1400&q=80"
+              alt="Explora nuestras nuevas llegadas de bienestar"
+              loading="lazy"
+            />
+          </a>
+          <a class="promo-slide" href="pages/producto-elixir-radiante.html">
+            <img
+              src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1400&q=80"
+              alt="Promo del Elixir Facial Radiante con 20% de descuento"
+              loading="lazy"
+            />
+          </a>
+          <a class="promo-slide" href="pages/coleccion-rituales.html">
+            <img
+              src="https://images.unsplash.com/photo-1522336572468-97b06e8ef143?auto=format&fit=crop&w=1400&q=80"
+              alt="Colección Rituales para una vida consciente"
+              loading="lazy"
+            />
+          </a>
+          <a class="promo-slide" href="pages/ventas-por-mayor.html">
+            <img
+              src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1400&q=80"
+              alt="Programa de ventas corporativas La Botica"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+      <div
+        class="promo-slider__dots"
+        role="tablist"
+        aria-label="Selecciona promoción"
+      >
+        <button
+          class="promo-slider__dot"
+          type="button"
+          aria-label="Ver promoción 1"
+          aria-selected="true"
+        ></button>
+        <button
+          class="promo-slider__dot"
+          type="button"
+          aria-label="Ver promoción 2"
+        ></button>
+        <button
+          class="promo-slider__dot"
+          type="button"
+          aria-label="Ver promoción 3"
+        ></button>
+        <button
+          class="promo-slider__dot"
+          type="button"
+          aria-label="Ver promoción 4"
+        ></button>
+      </div>
+    </section>
+
+    <main>
+      <section class="hero">
+        <div class="container hero__inner">
+          <div class="hero__content">
+            <p class="eyebrow">Novedades de temporada disponibles</p>
+            <h1>
+              Productos seleccionados con intención para una vida consciente
+            </h1>
+            <p class="lead">
+              Descubre piezas artesanales, esenciales de bienestar y básicos
+              sostenibles para el hogar escogidos por nuestro equipo de
+              curaduría.
+            </p>
+            <form class="hero__search" role="search">
+              <label for="product-search" class="sr-only"
+                >Buscar productos</label
+              >
+              <input
+                type="search"
+                id="product-search"
+                name="search"
+                placeholder="Busca tés, velas, tapetes de yoga..."
+              />
+              <button type="submit" class="btn">Buscar</button>
+            </form>
+            <div class="hero__meta">
+              <div>
+                <strong>2000+</strong>
+                <span>Clientes felices</span>
+              </div>
+              <div>
+                <strong>Envío gratis</strong>
+                <span>En compras superiores a $300.000</span>
+              </div>
+              <div>
+                <strong>Selección cuidadosa</strong>
+                <span>De aliados responsables</span>
+              </div>
+            </div>
+          </div>
+          <picture class="hero__media">
+            <source
+              srcset="
+                https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1000&q=80
+              "
+              media="(min-width: 768px)"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
+              alt="Selección de productos de bienestar y hogar"
+            />
+          </picture>
+        </div>
+      </section>
+
+      <section id="collections" class="collections">
+        <div class="container section-heading">
+          <div>
+            <p class="eyebrow">Seleccionado para tu estilo de vida</p>
+            <h2>Colecciones destacadas</h2>
+          </div>
+          <a class="link" href="pages/colecciones.html"
+            >Ver todas las colecciones</a
+          >
+        </div>
+        <div class="container grid grid--collections">
+          <article class="collection-card">
+            <img
+              src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=800&q=80"
+              alt="Juego de té y taza de cerámica"
+            />
+            <div class="collection-card__body">
+              <h3>Kit para mama</h3>
+              <p>
+                Empieza tu día con tés funcionales, kits de goteo y cerámicas
+                para el desayuno.
+              </p>
+              <a class="link" href="pages/coleccion-rituales.html"
+                >Comprar esta colección</a
+              >
+            </div>
+          </article>
+          <article class="collection-card">
+            <img
+              src="https://images.unsplash.com/photo-1518611507436-f9221403cca1?auto=format&fit=crop&w=800&q=80"
+              alt="Tapete de yoga y accesorios de bienestar"
+            />
+            <div class="collection-card__body">
+              <h3>Estudio de bienestar</h3>
+              <p>
+                Crea tu refugio en casa con tapetes de yoga, difusores y
+                herramientas de mindfulness.
+              </p>
+              <a class="link" href="pages/coleccion-bienestar.html"
+                >Comprar esta colección</a
+              >
+            </div>
+          </article>
+          <article class="collection-card">
+            <img
+              src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
+              alt="Morrales y elementos para picnic"
+            />
+            <div class="collection-card__body">
+              <h3>Escapadas al aire libre</h3>
+              <p>
+                Empaca ligero con equipo sostenible para tus aventuras y viajes
+                de fin de semana.
+              </p>
+              <a class="link" href="pages/coleccion-aventura.html"
+                >Comprar esta colección</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section
+        id="best-sellers"
+        class="products"
+        aria-labelledby="products-title"
+      >
+        <div class="container section-heading">
+          <div>
+            <p class="eyebrow">Más vendidos</p>
+            <h2 id="products-title">Seleccionados para ti</h2>
+          </div>
+          <div class="section-heading__controls">
+            <a class="link" href="pages/todos-los-productos.html"
+              >Ver todos los productos</a
+            >
+            <div class="sort">
+              <label for="sort-products">Ordenar</label>
+              <select id="sort-products" name="sort">
+                <option value="featured">Destacados</option>
+                <option value="price-low">Precio: menor a mayor</option>
+                <option value="price-high">Precio: mayor a menor</option>
+                <option value="new">Novedades</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="container grid grid--products" id="product-grid">
+          <article
+            class="product-card"
+            data-category="wellness"
+            data-tags="organic relaxation"
+            data-price="38"
+            data-product-id="te-botanico"
+            data-product-name="Té Botánico Nocturno"
+            data-product-price="148000"
+            data-product-url="pages/producto-te-botanico.html"
+            data-product-image="https://images.unsplash.com/photo-1505577058444-a3dab90d4253?auto=format&fit=crop&w=800&q=80"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1505577058444-a3dab90d4253?auto=format&fit=crop&w=800&q=80"
+              alt="Tetera de vidrio y té herbal"
+            />
+            <div class="product-card__body">
+              <span class="product-card__category">Bienestar</span>
+              <h3>Té Botánico Nocturno</h3>
+              <p>
+                Mezcla relajante de hojas sueltas con manzanilla, valeriana y
+                toronjil.
+              </p>
+              <div class="product-card__footer">
+                <span class="price">$148.000</span>
+                <button class="btn btn--small" type="button" data-add-to-cart>
+                  Agregar al carrito
+                </button>
+              </div>
+              <a
+                class="product-card__link"
+                href="pages/producto-te-botanico.html"
+                >Ver detalles del producto</a
+              >
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-category="home"
+            data-tags="handmade sustainable"
+            data-price="62"
+            data-product-id="jarron-gres"
+            data-product-name="Jarrón Artesanal en Gres"
+            data-product-price="241000"
+            data-product-url="pages/producto-jarron-gres.html"
+            data-product-image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80"
+              alt="Jarrón de cerámica minimalista"
+            />
+            <div class="product-card__body">
+              <span class="product-card__category">Hogar</span>
+              <h3>Jarrón Artesanal en Gres</h3>
+              <p>
+                Hecho en torno por artesanos locales con esmalte satinado y
+                silueta clásica.
+              </p>
+              <div class="product-card__footer">
+                <span class="price">$241.000</span>
+                <button class="btn btn--small" type="button" data-add-to-cart>
+                  Agregar al carrito
+                </button>
+              </div>
+              <a
+                class="product-card__link"
+                href="pages/producto-jarron-gres.html"
+                >Ver detalles del producto</a
+              >
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-category="outdoor"
+            data-tags="travel sustainable"
+            data-price="128"
+            data-product-id="morral-weekend"
+            data-product-name="Morral Sendero Weekend"
+            data-product-price="498000"
+            data-product-url="pages/producto-morral-weekend.html"
+            data-product-image="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"
+              alt="Mochila de viaje"
+            />
+            <div class="product-card__body">
+              <span class="product-card__category">Aire libre</span>
+              <h3>Morral Sendero Weekend</h3>
+              <p>
+                Mochila de nailon reciclado, liviana y con compartimentos
+                modulares.
+              </p>
+              <div class="product-card__footer">
+                <span class="price">$498.000</span>
+                <button class="btn btn--small" type="button" data-add-to-cart>
+                  Agregar al carrito
+                </button>
+              </div>
+              <a
+                class="product-card__link"
+                href="pages/producto-morral-weekend.html"
+                >Ver detalles del producto</a
+              >
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-category="tech"
+            data-tags="sustainable"
+            data-price="89"
+            data-product-id="parlante-nordic"
+            data-product-name="Parlante Nordic Sound"
+            data-product-price="346000"
+            data-product-url="pages/producto-parlante-nordic.html"
+            data-product-image="https://images.unsplash.com/photo-1490376840453-5f616fbebe5b?auto=format&fit=crop&w=800&q=80"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1490376840453-5f616fbebe5b?auto=format&fit=crop&w=800&q=80"
+              alt="Parlante bluetooth de madera y tela"
+            />
+            <div class="product-card__body">
+              <span class="product-card__category">Tecnología</span>
+              <h3>Parlante Nordic Sound</h3>
+              <p>
+                Parlante bluetooth con 12 horas de batería y madera de origen
+                responsable.
+              </p>
+              <div class="product-card__footer">
+                <span class="price">$346.000</span>
+                <button class="btn btn--small" type="button" data-add-to-cart>
+                  Agregar al carrito
+                </button>
+              </div>
+              <a
+                class="product-card__link"
+                href="pages/producto-parlante-nordic.html"
+                >Ver detalles del producto</a
+              >
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-category="beauty"
+            data-tags="organic handmade"
+            data-price="24"
+            data-product-id="elixir-radiante"
+            data-product-name="Elixir Facial Radiante"
+            data-product-price="94000"
+            data-product-url="pages/producto-elixir-radiante.html"
+            data-product-image="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&w=800&q=80"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&w=800&q=80"
+              alt="Frasco de aceite facial"
+            />
+            <div class="product-card__body">
+              <span class="product-card__category">Belleza</span>
+              <h3>Elixir Facial Radiante</h3>
+              <p>
+                Botánicos prensados en frío para hidratar, iluminar y proteger
+                la piel.
+              </p>
+              <div class="product-card__footer">
+                <span class="price">$94.000</span>
+                <button class="btn btn--small" type="button" data-add-to-cart>
+                  Agregar al carrito
+                </button>
+              </div>
+              <a
+                class="product-card__link"
+                href="pages/producto-elixir-radiante.html"
+                >Ver detalles del producto</a
+              >
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-category="home"
+            data-tags="handmade sustainable"
+            data-price="54"
+            data-product-id="manta-costera"
+            data-product-name="Manta Costera en Lino"
+            data-product-price="210000"
+            data-product-url="pages/producto-manta-costera.html"
+            data-product-image="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+              alt="Cobija suave de lino"
+            />
+            <div class="product-card__body">
+              <span class="product-card__category">Hogar</span>
+              <h3>Manta Costera en Lino</h3>
+              <p>
+                Manta de lino transpirable tejida en pequeños lotes con tintes
+                naturales.
+              </p>
+              <div class="product-card__footer">
+                <span class="price">$210.000</span>
+                <button class="btn btn--small" type="button" data-add-to-cart>
+                  Agregar al carrito
+                </button>
+              </div>
+              <a
+                class="product-card__link"
+                href="pages/producto-manta-costera.html"
+                >Ver detalles del producto</a
+              >
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-category="wellness"
+            data-tags="relaxation handmade"
+            data-price="48"
+            data-product-id="set-aromaterapia"
+            data-product-name="Set de Aromaterapia Ritual"
+            data-product-price="187000"
+            data-product-url="pages/producto-set-aromaterapia.html"
+            data-product-image="https://images.unsplash.com/photo-1526413232644-8a3f83f3d6eb?auto=format&fit=crop&w=800&q=80"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1526413232644-8a3f83f3d6eb?auto=format&fit=crop&w=800&q=80"
+              alt="Kit de difusor de aromaterapia"
+            />
+            <div class="product-card__body">
+              <span class="product-card__category">Bienestar</span>
+              <h3>Set de Aromaterapia Ritual</h3>
+              <p>
+                Incluye difusor de cerámica, trío de aceites esenciales y guía
+                de respiración consciente.
+              </p>
+              <div class="product-card__footer">
+                <span class="price">$187.000</span>
+                <button class="btn btn--small" type="button" data-add-to-cart>
+                  Agregar al carrito
+                </button>
+              </div>
+              <a
+                class="product-card__link"
+                href="pages/producto-set-aromaterapia.html"
+                >Ver detalles del producto</a
+              >
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-category="outdoor"
+            data-tags="travel sustainable"
+            data-price="76"
+            data-product-id="set-picnic"
+            data-product-name="Set de Picnic Evergreen"
+            data-product-price="296000"
+            data-product-url="pages/producto-set-picnic.html"
+            data-product-image="https://images.unsplash.com/photo-1562376552-0d160a2f2387?auto=format&fit=crop&w=800&q=80"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1562376552-0d160a2f2387?auto=format&fit=crop&w=800&q=80"
+              alt="Kit de picnic reutilizable"
+            />
+            <div class="product-card__body">
+              <span class="product-card__category">Aire libre</span>
+              <h3>Set de Picnic Evergreen</h3>
+              <p>
+                Esenciales reutilizables para picnic elaborados en bambú y
+                materiales reciclados.
+              </p>
+              <div class="product-card__footer">
+                <span class="price">$296.000</span>
+                <button class="btn btn--small" type="button" data-add-to-cart>
+                  Agregar al carrito
+                </button>
+              </div>
+              <a
+                class="product-card__link"
+                href="pages/producto-set-picnic.html"
+                >Ver detalles del producto</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="usp">
+        <div class="container usp__grid">
+          <article>
+            <h3>Envíos carbono neutrales</h3>
+            <p>
+              Compensamos cada entrega y trabajamos con aliados comprometidos
+              con reducir emisiones.
+            </p>
+          </article>
+          <article>
+            <h3>Pagos flexibles</h3>
+            <p>
+              Paga a tu ritmo con cuotas sin interés o finaliza con tu billetera
+              digital.
+            </p>
+          </article>
+          <article>
+            <h3>Estilistas a tu servicio</h3>
+            <p>
+              Conversa con nuestro equipo para recibir recomendaciones
+              personalizadas según tu estilo de vida.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="articles" class="articles" aria-labelledby="articles-title">
+        <div class="container section-heading">
+          <div>
+            <p class="eyebrow">El Diario Colectivo</p>
+            <h2 id="articles-title">Inspiración e historias</h2>
+          </div>
+          <a class="link" href="pages/revista.html">Leer todos los artículos</a>
+        </div>
+        <div class="container grid grid--articles">
+          <article class="article-card" data-tags="wellness routines">
+            <img
+              src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80"
+              alt="Persona sirviendo té"
+            />
+            <div class="article-card__body">
+              <h3>5 rituales para iniciar cada mañana con calma</h3>
+              <p>
+                Comienza el día con prácticas conscientes que marcan un ritmo
+                sereno para el resto de la jornada.
+              </p>
+              <a class="link" href="pages/articulo-rituales.html"
+                >Leer artículo</a
+              >
+            </div>
+          </article>
+          <article class="article-card" data-tags="home decor sustainable">
+            <img
+              src="https://images.unsplash.com/photo-1484100356142-db6ab6244067?auto=format&fit=crop&w=800&q=80"
+              alt="Sala con decoración sostenible"
+            />
+            <div class="article-card__body">
+              <h3>Cómo diseñar un hogar consciente que ames</h3>
+              <p>
+                Nuestros estilistas comparten consejos para elegir decoración
+                que se siente bien y aporta al planeta.
+              </p>
+              <a class="link" href="pages/articulo-hogar.html">Leer artículo</a>
+            </div>
+          </article>
+          <article class="article-card" data-tags="travel outdoor">
+            <img
+              src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=800&q=80"
+              alt="Persona sosteniendo un mapa al aire libre"
+            />
+            <div class="article-card__body">
+              <h3>Escapadas de fin de semana para el minimalista moderno</h3>
+              <p>
+                Empaca ligero con piezas versátiles que te ayudan a
+                desconectarte y explorar con tranquilidad.
+              </p>
+              <a class="link" href="pages/articulo-viajes.html"
+                >Leer artículo</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="testimonials" aria-label="Testimonios de clientes">
+        <div class="container">
+          <div class="testimonial">
+            <blockquote>
+              “Cada producto se siente elegido con intención. Desde explorar
+              hasta recibir el pedido, todo es sencillo.”
+            </blockquote>
+            <cite>&mdash; Liana, miembro de la comunidad desde 2021</cite>
+          </div>
+        </div>
+      </section>
+
+      <section id="newsletter" class="newsletter">
+        <div class="container newsletter__inner">
+          <div class="newsletter__content">
+            <p class="eyebrow">Mantente al día</p>
+            <h2>Únete a nuestro boletín semanal</h2>
+            <p>
+              Entérate primero de nuevos lanzamientos, artículos destacados y
+              ofertas exclusivas para nuestra comunidad.
+            </p>
+          </div>
+          <form class="newsletter__form">
+            <label class="sr-only" for="newsletter-email"
+              >Correo electrónico</label
+            >
+            <input
+              type="email"
+              id="newsletter-email"
+              name="email"
+              placeholder="Ingresa tu correo"
+              required
+            />
+            <button type="submit" class="btn">Suscribirme</button>
+            <p class="form-helper">
+              Cuidamos tu bandeja de entrada. Puedes darte de baja cuando
+              quieras.
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div>
+          <a
+            class="brand brand--footer"
+            href="index.html"
+            aria-label="Volver al inicio de La Botica"
+          >
+            <span class="brand__logo" aria-hidden="true">
+              <img
+                src="./assets/2.png"
+                alt="Logo circular de La Botica"
+                decoding="async"
+              />
+            </span>
+            <span class="brand__wordmark">La Botica</span>
+          </a>
+          <p>
+            Curamos productos que inspiran una vida intencional y rutinas
+            significativas.
+          </p>
+          <div class="social">
+            <a href="https://www.instagram.com/labotica" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5z"
+                />
+              </svg>
+            </a>
+            <a href="https://www.pinterest.com" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 2a10 10 0 0 0-3.53 19.37c-.05-.82-.1-2.07.02-2.96.11-.82.7-5.2.7-5.2s-.18-.37-.18-.93c0-.87.51-1.52 1.14-1.52.54 0 .8.4.8.89 0 .54-.34 1.34-.52 2.08-.15.64.31 1.16.94 1.16 1.13 0 2-1.19 2-2.91 0-1.52-1.09-2.58-2.65-2.58-1.81 0-2.88 1.36-2.88 2.76 0 .55.21 1.14.48 1.46.05.06.05.11.04.17-.04.19-.13.6-.15.68-.02.09-.07.12-.17.07-.62-.29-1-1.2-1-1.93 0-1.58 1.15-3.04 3.33-3.04 1.75 0 3.11 1.25 3.11 2.92 0 1.74-1.09 3.15-2.59 3.15-.5 0-.97-.26-1.13-.57l-.31 1.17c-.11.43-.41.96-.6 1.28A10 10 0 1 0 12 2z"
+                />
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M21 8.5a6.5 6.5 0 0 1-3.7-1.18l.01 6.1a5.16 5.16 0 1 1-5.17-5.16c.36 0 .71.04 1.05.11V5.09a6.5 6.5 0 0 1 3.12.82 4.01 4.01 0 0 0 4.69 3.37z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3>Comprar</h3>
+          <ul>
+            <li><a href="pages/nuevas-llegadas.html">Nuevas llegadas</a></li>
+            <li><a href="pages/mas-vendidos.html">Más vendidos</a></li>
+            <li>
+              <a href="pages/tarjetas-de-regalo.html">Tarjetas de regalo</a>
+            </li>
+            <li>
+              <a href="pages/ventas-por-mayor.html">Ventas al por mayor</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3>Soporte</h3>
+          <ul>
+            <li><a href="pages/centro-de-ayuda.html">Centro de ayuda</a></li>
+            <li>
+              <a href="pages/envios-y-devoluciones.html"
+                >Envíos y devoluciones</a
+              >
+            </li>
+            <li>
+              <a href="pages/rastrea-tu-pedido.html">Rastrea tu pedido</a>
+            </li>
+            <li>
+              <a href="pages/regalos-corporativos.html">Regalos corporativos</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3>Aprender</h3>
+          <ul>
+            <li><a href="pages/revista.html">Revista</a></li>
+            <li><a href="pages/sostenibilidad.html">Sostenibilidad</a></li>
+            <li>
+              <a href="pages/nuestros-creadores.html">Nuestros creadores</a>
+            </li>
+            <li><a href="pages/afiliados.html">Afiliados</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer__legal">
+        <p>
+          &copy; <span data-year></span> La Botica. Todos los derechos
+          reservados.
+        </p>
+        <a href="pages/politica-privacidad.html">Política de privacidad</a>
+        <a href="pages/terminos-condiciones.html">Términos y condiciones</a>
+        <a href="pages/accesibilidad.html">Accesibilidad</a>
+      </div>
+    </footer>
+
+    <div class="auth-modal" data-register-modal hidden>
+      <div
+        class="auth-modal__panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="register-title"
+      >
+        <button class="auth-modal__close" type="button" data-close-modal>
+          <span class="sr-only">Cerrar</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <h2 id="register-title">Crear una cuenta</h2>
+        <p class="auth-modal__subtitle">
+          Regístrate para recibir novedades y administrar tus pedidos.
+        </p>
+        <form class="auth-form" data-register-form novalidate>
+          <label>
+            <span>Nombre completo</span>
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+          <label>
+            <span>Correo electrónico</span>
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+          <label>
+            <span>Contraseña</span>
+            <input
+              type="password"
+              name="password"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            />
+          </label>
+          <label>
+            <span>Confirmar contraseña</span>
+            <input
+              type="password"
+              name="confirmPassword"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            />
+          </label>
+          <button class="btn" type="submit">Crear cuenta</button>
+          <p class="auth-form__message" data-register-message role="status"></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="auth-modal" data-login-modal hidden>
+      <div
+        class="auth-modal__panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="login-title"
+      >
+        <button class="auth-modal__close" type="button" data-close-modal>
+          <span class="sr-only">Cerrar</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <h2 id="login-title">Iniciar sesión</h2>
+        <p class="auth-modal__subtitle">
+          Accede con tu correo y contraseña para continuar.
+        </p>
+        <form class="auth-form" data-login-form novalidate>
+          <label>
+            <span>Correo electrónico</span>
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+          <label>
+            <span>Contraseña</span>
+            <input
+              type="password"
+              name="password"
+              autocomplete="current-password"
+              required
+            />
+          </label>
+          <button class="btn" type="submit">Ingresar</button>
+          <p class="auth-form__message" data-login-message role="status"></p>
+        </form>
+        <p class="auth-form__alt">
+          ¿Primera vez aquí?
+          <button type="button" class="auth-form__link" data-open-register>
+            Crear cuenta
+          </button>
+        </p>
+      </div>
+    </div>
+
+    <div class="welcome-modal" data-welcome-modal hidden>
+      <div
+        class="welcome-modal__panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="welcome-title"
+      >
+        <button class="welcome-modal__close" type="button" data-welcome-close>
+          <span class="sr-only">Cerrar</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div class="welcome-modal__content">
+          <h2 id="welcome-title">Recibe 5% off</h2>
+          <p class="welcome-modal__subtitle">
+            Deja tu correo y recibe un codigo exclusivo para tu primera compra.
+          </p>
+          <form class="welcome-form" data-welcome-form novalidate>
+            <label>
+              <span>Correo electrónico</span>
+              <input
+                type="email"
+                name="email"
+                placeholder="tu@correo.com"
+                autocomplete="email"
+                required
+              />
+            </label>
+            <button class="btn welcome-form__submit" type="submit">
+              Obtener mi 5% off
+            </button>
+            <p
+              class="welcome-form__message"
+              data-welcome-message
+              role="status"
+            ></p>
+          </form>
+          <button
+            class="welcome-modal__dismiss"
+            type="button"
+            data-welcome-dismiss
+          >
+            No gracias, prefiero perderlo
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
